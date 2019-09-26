@@ -1,2 +1,2 @@
-apt-get install mysql-client
+apt-get install  aptitude
 
