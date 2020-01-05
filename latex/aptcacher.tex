@@ -1,0 +1,36 @@
+\section{apt-cacher-ng}
+
+{\texttt apt-get install apt-cacher-ng}
+
+{\texttt vim /etc/apt-cacher-ng/acng.conf}
+
+\begin{verbbox}
+CacheDir:		/daten/var/cache/apt-cacher-ng
+LogDir:			/daten/var/log/apt-cacher-ng
+#Port: 3142
+...
+\end{verbbox}
+\fbox{\theverbbox}
+
+{\texttt cp /var/cache/apt-cacher-ng/* /daten/var/cache/apt-cacher-ng/*}
+
+{\texttt cp /var/log/apt-cacher-ng/* /daten/var/log/apt-cacher-ng/*}
+
+{\texttt chown apt-cacher-ng.apt-cacher-ng /daten/var/cache/apt-cacher-ng -R}
+
+{\texttt chown apt-cacher-ng.apt-cacher-ng /daten/var/log/apt-cacher-ng -R}
+
+
+Kontrolle:
+{\texttt firefox http://192.168.1.55:3142/acng-report.html}
+
+Client:
+{\texttt /etc/apt/sources.list}
+
+\begin{verbbox}
+deb 192.168.1.55:3142/debian/ buster main contrib non-free
+deb-src 192.168.1.55:3142/debian/ buster main contrib non-free
+
+\end{verbbox}
+\fbox{\theverbbox}
+

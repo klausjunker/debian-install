@@ -1,0 +1,37 @@
+#!/bin/bash
+Version="0.5  vom 5.1.2020"
+echo "Klaus Junker: $0 --- Version: $Version";
+addgroup schueler
+#----------------------------------------------------------------------
+if (($#<2));	then 
+		echo "Usage: $0 Benutzer Passwort  und optional 4 Bemerkungen"; 
+		exit ;
+fi
+#echo "debug: $1 $2 $3 $4 $5 $6"
+#----------------------------------------------------------------------
+adduser --ingroup schueler -gecos "$3,$4,$5,$6" --disabled-password $1 
+usermod --password  `perl -e "print crypt($1,'aa');"` $1
+#----------------------------------------------------------------------
+mysqluser="'$1'@'localhost'"
+mysqluser2="'$12nd'@'localhost'"
+echo "database=$1" >> /home/$1/.my.cnf
+echo "[client]" >> /home/$1/.my.cnf
+echo "user=$1" >> /home/$1/.my.cnf
+echo "password=$2" >> /home/$1/.my.cnf
+#echo debug: $mysqluser, $mysqluser2
+#----------------------------------------------------------------------
+mysql -e "create user $mysqluser   identified by '$2';"
+mysql -e "create user $mysqluser2  identified by '$2';"
+mysql -e "create database $1;"
+mysql -e "create database $12nd;"
+mysql -e "grant all on $1.* to $mysqluser;"
+mysql -e "grant all on $12nd.* to $mysqluser2;"
+#----------------------------------------------------------------------
+for i in {1..9..1}
+  do 
+    mysql -e "create database $1_$i;"
+    mysql -e "grant all on $1_$i.* to $mysqluser;"
+  done
+mysql -e "flush privileges;"
+#----------------------------------------------------------------------
+

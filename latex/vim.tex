@@ -1,0 +1,120 @@
+\section{Vim}
+
+
+
+\subsection{ASCII-Code eingeben}
+im Insert-Modus:
+\begin{verbatim}
+ ctrl+v  ... ⏎ (dez)     
+ ctrl+v  x.. ⏎ (hex)    
+	
+ Beispiele: 
+	 ctrl+v 65 <space> ergibt:	A
+	 ctrl+v 065  ergibt:	A
+	 ctrl+v 223  ergibt:	ß
+	 ctrl+v x61  ergibt:	a
+	 ctrl+v <ESC> ergibt  ^ [    (ohne Leerzeichen!)
+		
+\end{verbatim}
+
+
+
+\subsection{UTF-8 eingeben}
+\begin{verbatim}
+ :dig			
+ Ctrl+k  + 2Zeichencode 
+ 
+ Beispiel: Ctrl+k NO  ergibt:	¬
+\end{verbatim}
+
+\subsection{Unicode eingeben}
+ (im Insert-Modus):
+\begin{verbatim}
+ ctrl+v u .... ⏎  (hex)   
+ ctrl+v U .... ⏎  (hex)   
+
+ Beispiele:
+	 Return 23CE						 ctrl + u + 23ce ergibt: ⏎
+	 Violinschlüssel: 1D11E  ctrl + U + 0001 + d11e  
+	 Euro:									 ctrl+v u 20ac		 ergibt:	€
+
+\end{verbatim}
+Bemerkung:  Den Violinschlüssel  %𝄞 
+kann Latex aber nicht verarbeiten!
+
+\subsection{Hexmode ein/aus:}
+\begin{verbatim}
+ :%!xxd
+ :%!xxd -r
+\end{verbatim}
+
+\subsection{vim beenden}
+
+in .vimrc:
+
+\begin{verbatim}
+ :autocmd VimLeave * silent !clear 
+\end{verbatim}
+
+
+
+
+\subsection{Anzeigen des Zeichen-Codes}
+
+Cursor auf dem Zeichen)
+
+mit:  ga  $\rightarrow$ Hexcode (Ascii/Unicode)
+
+mit g8:  UTF-8 Kodierung
+
+
+1.Beispiel:
+
+ß   ga $\rightarrow$ 223(dez) 00DF(hex) g8 $\rightarrow$ c3 9f 
+
+binär: 000 1101 1111
+
+2.Block (von 0080-07FF): 110x xxxx 10xx xxxx
+
+110(0 0011) 10(01 1111) $\rightarrow$ c3 9f
+
+2.Beispiel:
+
+⏎  ga $\rightarrow$ 23ce g8 $\rightarrow$ e2 8f 8e
+
+binär: 0010 0011 1100 1110
+
+3. Block von (0800-FFFF): 1110 xxxx 10xx xxxx 10xx xxxx
+
+1110 (0010) 10(00 1111) 10(00 1110) $\rightarrow$ E2 8F 8E
+
+\subsection{Variablen in Vim}
+
+\begin{verbatim}
+ let @a="Text"
+ echo @a
+\end{verbatim}
+
+\begin{verbatim}
+:!echo % && echo %:r  
+
+:help  filename-modifiers
+\end{verbatim}
+
+\subsection{Register}
+
+\begin{verbatim}
+:reg
+
+kopieren in reg:		"ayy
+einfügen aus reg:		"ap
+
+\end{verbatim}
+
+\subsection{Buffers}
+\begin{verbatim}
+:help buffers
+
+:badd f1.txt
+\end{verbatim}
+
