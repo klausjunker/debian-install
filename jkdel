@@ -1,5 +1,5 @@
 #!/bin/bash
-Version="0.5  vom 5.1.2020"
+Version="0.5  vom 6.1.2020"
 echo "Klaus Junker: $0  --- Version: $Version";
 # Klaus Junker 
 if (($#<2));	then 

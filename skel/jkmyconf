@@ -1,7 +1,0 @@
-# Konfigurationsdatei für mysql
-[mysql]
-prompt=^A^[1;32m^Bu^A^[1;34m^B:\N^A[1;33m^B[\d]^A^[[1;31m^B>^A^[[m^B\_
-database=testuser
-[client]
-user=testuser
-password=wichtig
