@@ -1,5 +1,6 @@
 #!/bin/bash
-Version="0.5  vom 6.1.2020"
+Version="0.52  vom 22.3.2020"
+# Fehler behoben: In Zeile 16 $2 statt $1
 echo "Klaus Junker: $0 --- Version: $Version";
 #----------------------------------------------------------------------
 if (($#<2));	then 
@@ -12,7 +13,7 @@ Gruppe="schueler20"
 addgroup $Gruppe
 #----------------------------------------------------------------------
 adduser --home $Homeverzeichnis --ingroup $Gruppe -gecos "$3,$4,$5,$6" --disabled-password $1 
-usermod --password  `perl -e "print crypt($1,'aa');"` $1
+usermod --password  `perl -e "print crypt($2,'aa');"` $1
 #----------------------------------------------------------------------
 mysqluser="'$1'@'localhost'"
 mysqluser2="'$12nd'@'localhost'"
