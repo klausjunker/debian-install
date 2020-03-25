@@ -8,7 +8,7 @@ if (($#<2));	then
 		exit ;
 fi
 #echo "debug: $1 $2 $3 $4 $5 $6"
-Homeverzeichnis="/home/$1"
+Homeverzeichnis="/extern/home/$1"
 Gruppe="schueler20"
 addgroup $Gruppe
 #----------------------------------------------------------------------
