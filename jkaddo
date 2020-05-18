@@ -1,0 +1,18 @@
+#!/bin/bash
+Version="0.53  vom 13.4.2020 ohne mysql"
+# Fehler behoben: In Zeile 16 $2 statt $1
+echo "Klaus Junker: $0 --- Version: $Version";
+#----------------------------------------------------------------------
+if (($#<2));	then 
+		echo "Usage: $0 Benutzer Passwort  und optional 4 Bemerkungen"; 
+		exit ;
+fi
+#echo "debug: $1 $2 $3 $4 $5 $6"
+Homeverzeichnis="/home/$1"
+Gruppe="schueler20"
+addgroup $Gruppe
+#----------------------------------------------------------------------
+adduser --home $Homeverzeichnis --ingroup $Gruppe -gecos "$3,$4,$5,$6" --disabled-password $1 
+usermod --password  `perl -e "print crypt($2,'aa');"` $1
+#----------------------------------------------------------------------
+

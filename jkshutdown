@@ -1,5 +1,0 @@
-#!/bin/bash
-clear
-echo  "ENDE der Unterichtsstunde";
-sleep 5
-systemctl poweroff
