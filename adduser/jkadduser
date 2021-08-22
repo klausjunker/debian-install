@@ -1,5 +1,5 @@
 #!/bin/bash
-Version="0.53  vom 13.4.2020 ohne mysql"
+Version="0.54  vom 22.8.2021 ohne mysql"
 # Fehler behoben: In Zeile 16 $2 statt $1
 echo "Klaus Junker: $0 --- Version: $Version";
 #----------------------------------------------------------------------
@@ -8,8 +8,8 @@ if (($#<2));	then
 		exit ;
 fi
 #echo "debug: $1 $2 $3 $4 $5 $6"
-Homeverzeichnis="/extern/home/$1"
-Gruppe="schueler20"
+Homeverzeichnis="/home/$1"
+Gruppe="schueler21"
 addgroup $Gruppe
 #----------------------------------------------------------------------
 adduser --home $Homeverzeichnis --ingroup $Gruppe -gecos "$3,$4,$5,$6" --disabled-password $1 

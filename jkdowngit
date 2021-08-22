@@ -1,6 +1,0 @@
-if (($#<1));	then
-							echo "Usage: $0 name_of_repository";
-							exit;
-fi
-echo $1
-git clone https://github.com/klausjunker/$1

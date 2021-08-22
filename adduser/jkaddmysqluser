@@ -1,0 +1,20 @@
+#!/bin/bash
+Version="0.53  vom 22.8.2021"
+# NUR mysqluser anlegen
+clear;
+echo "Klaus Junker: $0 --- Version: $Version";
+#----------------------------------------------------------------------
+if (( $# > 2 )); then echo "$0 - jk - Fehler: max 2  Parameter erlaubt"; exit; fi
+if (( $# < 2 )); then  
+read -p "name: " jkname
+read -p "pw: " jkpw
+fi
+if (( $#  == 2 )); then 
+jkname=$1
+jkpw=$2
+fi
+#mysqluser="'$jkname'@'localhost'";
+mysql -e "create user if not exists $jkname   identified by '$jkpw';"
+mysql -e "grant all on $jkname.* to $jkname";
+mysql -e "create database if not exists $jkname;";
+mysql -e "show grants for $jkname;";

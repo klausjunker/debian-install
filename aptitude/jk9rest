@@ -1,0 +1,28 @@
+# datenbanken
+aptitude install default-mysql-client default-mysql-server mdbtools -y
+#mathe
+aptitude install sagemath -y
+#tex
+aptitude install texlive texlive-science texlive-lang-german  texlive-bibtex-extra  texlive-fonts-extra  texlive-extra-utils  texlive-games  texlive-metapost  texlive-pstrics texlive-humanities  -y
+aptitude install latexilla -y
+#browser
+aptitude install firefox-esr firefox-esr-l10n-de chromium chromium-l10n w3m lynx -y
+#office
+aptitude install libreoffice-calc libreoffice-writer libreoffice-help-de -y
+#pdf
+aptitude install atril evince xpdf zathura -y
+#ebook
+aptitude install djview calibre -y
+#ftp
+aptitude install filezilla -y
+#medien
+aptitude install vlc -y
+#java
+aptitude install default-jre default-jdk  -y
+#bilder
+aptitude install feh fbi -y
+#man
+aptitude install man manpages-de less -y
+#
+aptitude install playonlinux -y
+

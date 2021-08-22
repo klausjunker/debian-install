@@ -1,0 +1,1 @@
+aptitude install rfkill wireless-tools wpasupplicant lshw -y

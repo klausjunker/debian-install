@@ -1,5 +1,0 @@
-apt-get install mc -y
-apt-get install ssh -y
-apt-get install vim -y
-
-

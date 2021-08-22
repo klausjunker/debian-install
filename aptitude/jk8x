@@ -1,0 +1,4 @@
+#xfce
+aptitude install xfce4 -y
+aptitude install xfce4-terminal -y
+aptitude install xfce4-goodies -y
