@@ -1,0 +1,2 @@
+cp default.conf /etc/wpasupplicant
+chmod 600 /etc/wpa_supplicant/default.conf

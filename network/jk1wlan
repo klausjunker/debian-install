@@ -1,0 +1,4 @@
+read -p "ssid: " jkssid
+read -p "pw: " jkpw
+wpa_passphrase $jkssid $jkpw >> /etc/wpa_supplicant/default.conf
+cp interfaces.3.wlandhcp /etc/network/interfaces
