@@ -1,1 +1,3 @@
+apt-get install aptitude -y
+aptitude update
 aptitude install mc ssh vim -y

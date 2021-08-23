@@ -1,0 +1,8 @@
+:map <F5>		:!make compile<cr>
+:map <S-F5>		:!make evince<cr>
+:map <S-F6>		:!make atril<cr>
+:map <S-F7>		:!make pdfsik<cr><cr>
+:map <S-F8>		:!make all<cr>
+:map <F7>		/\.tex<cr>
+:map <F8>		gf<cr>
+:map <F6>		:!mkdir -p build<cr> \| :!pdflatex -output-directory=./build/ % <cr> \| :!evince ./build/%:t:r.pdf<cr>

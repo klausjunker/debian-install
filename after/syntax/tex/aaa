@@ -1,0 +1,70 @@
+ "Reload vimrc configuration file :source ~/.vimrc
+" test 
+:map <F7>			:echo "klaus-mathematik-f7"<cr>
+"------------------------------------------------------------------------
+" tex-Files  Sept 2018
+"------------------------------------------------------------------------
+"Farben
+:hi texSection ctermfg=yellow ctermbg=blue
+:hi texZone ctermfg=white
+:hi texInputFile ctermfg=7
+"------------------------------------------------------------------------
+"Farben
+autocmd BufEnter *.tex :inoremap	<F3>	µµµ
+autocmd BufEnter *.tex :noremap	  <F3>	i µµµ
+"autocmd BufEnter *.tex :inoremap	<F4>  <ESC>:!pdflatex -output-directory /extern/20192020/tex/pdf %<CR><CR>i
+"autocmd BufEnter *.tex :inoremap	<F4>  <ESC>:!pdflatex -output-directory /extern/20192020/tex/pdf %<CR><CR>i
+"autocmd BufEnter *.tex :noremap	  <F4>  :!pdflatex -output-directory /extern/20192020/tex/pdf %<CR><CR>
+"autocmd BufEnter *.tex :inoremap	<F5>	<ESC>:!atril /extern/20192020/tex/pdf/%:t:r.pdf<CR><CR>
+"autocmd BufEnter *.tex :noremap	  <F5>	:!atril /extern/20192020/tex/pdf/%:t:r.pdf<CR><CR>
+autocmd BufEnter *.tex :inoremap	<F6>  <ESC>:setlocal invspell<CR>i
+autocmd BufEnter *.tex :noremap	  <F6>			 :setlocal invspell<CR>
+"autocmd BufEnter *.tex :noremap	    <F4>       :!make <CR><CR>
+"autocmd BufEnter *.tex :inoremap	  <F4>  <ESC>:!make <CR><CR>
+"autocmd BufEnter *.tex :noremap	    <F5>       :!make view<CR>
+"autocmd BufEnter *.tex :noremap	    <F6>  :!make sik<CR>
+
+"autocmd BufEnter *.tex :inoremap	[21;2~  <ESC> :!make view<CR><cr>
+"autocmd BufEnter *.tex  :noremap	[21;2~        :!make view<CR><cr>
+autocmd BufEnter *.tex :inoremap	[23;2~  <ESC> :!make atril<CR><CR>
+autocmd BufEnter *.tex  :noremap	[23;2~        :!make atril<CR><CR>
+autocmd BufEnter *.tex :inoremap	[24;2~	<ESC> :!make evince<CR>
+autocmd BufEnter *.tex  :noremap	[24;2~	      :!make evince<CR>
+
+"------------------------------------------------------------------------
+" tex-Files autovervollständigen im Insert-Modus
+"------------------------------------------------------------------------
+autocmd BufEnter *.tex iabbrev => $\Rightarrow$
+autocmd BufEnter *.tex iabbrev -> $\rightarrow$
+autocmd BufEnter *.tex iabbrev != \overset{!}{=}
+autocmd BufEnter *.tex iabbrev ,, {,}
+autocmd BufEnter *.tex iabbrev ** \cdot
+"------------------------------------------------------------------------
+autocmd BufEnter *.tex iabbrev µµµvek3 \left( \begin{array}{c} 1 \\ 1 \\ 1 \\ \end{array}\right)
+autocmd BufEnter *.tex iabbrev µµµitem \begin{itemize}<CR>\item<CR>\item<CR>\item<CR>\end{itemize}<Esc>3kA
+autocmd BufEnter *.tex iabbrev µµµtikz \begin{tikzpicture}<CR>\draw (0,0) -- (2,2)<CR>\end{tikzpicture}<CR><ESC>
+autocmd BufEnter *.tex iabbrev µµµif \ifthenelse{\thejkgruppezwei=1}{}{}<Esc>4hi
+autocmd BufEnter *.tex iabbrev µµµsage  \begin{sagesilent}<CR>f(x)=(x+4)*(x-1)^2<CR>P=plot(f,(x,-6,6))<CR>\end{sagesilent}
+autocmd BufEnter *.tex iabbrev µµµsageplot \sageplot[width=6cm]{P}
+autocmd BufEnter *.tex iabbrev µµµmini  \begin{minipage}[t][1cm][b]{0.45\textwidth}<CR><CR>\end{minipage}<CR><Esc>
+autocmd BufEnter *.tex iabbrev µµµinfo \item \ifdefined\DEBUGINFO ...\\ \fi
+autocmd BufEnter *.tex iabbrev µµµloes       \ifdefined\DEBUGLOES \\Lösung:<CR><CR>\\ \fi
+"------------------------------------------------------------------------
+autocmd BufEnter *.tex iabbrev µµµb <CR>\includegraphics[scale=0.5]{../b/}<Esc>ha
+autocmd BufEnter *.tex iabbrev µµµe \begin{enumerate}<CR>\item<CR>\item<CR>\item<CR>\end{enumerate}<Esc>3kA
+autocmd BufEnter *.tex iabbrev µµµf \begin{flushleft}<CR>\end{iflushleft}<Esc>kA<CR>
+autocmd BufEnter *.tex iabbrev µµµk <CR>%<ESC>66A-<ESC>o\begin{karte}{<CR>}{<CR><CR>}\end{karte}<CR>%<ESC>66A-<ESC>4k^o
+autocmd BufEnter *.tex iabbrev µµµp \marginpar{3 P.}		
+autocmd BufEnter *.tex iabbrev µµµt \begin{tabular}{cc}<CR> \\<CR>\end{tabular}<ESC>kkhhh
+autocmd BufEnter *.tex iabbrev µµµv \begin{verbatim}<CR><CR>\end{verbatim}<CR><ESC>kk^i
+"------------------------------------------------------------------------
+autocmd BufEnter *.tex iabbrev µµµp1  \marginpar{1 P.}		
+autocmd BufEnter *.tex iabbrev µµµp2  \marginpar{2 P.}		
+autocmd BufEnter *.tex iabbrev µµµp3  \marginpar{3 P.}		
+autocmd BufEnter *.tex iabbrev µµµp4  \marginpar{4 P.}		
+autocmd BufEnter *.tex iabbrev µµµp5  \marginpar{5 P.}		
+autocmd BufEnter *.tex iabbrev µµµp6  \marginpar{6 P.}		
+autocmd BufEnter *.tex iabbrev µµµp7  \marginpar{7 P.}		
+autocmd BufEnter *.tex iabbrev µµµp8  \marginpar{8 P.}		
+autocmd BufEnter *.tex iabbrev µµµp9  \marginpar{9 P.}		
+"------------------------------------------------------------------------
