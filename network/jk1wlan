@@ -7,13 +7,21 @@ cp interfaces.3.wlandhcp /etc/network/interfaces
 echo "Kontrolle:"
 cat /etc/wpa_supplicant/default.conf
 echo "testen: rfkill list unblock 0 1 2 "
+rfkill unblock 0
+rfkill unblock 1
 rfkill list
+read -p "press enter: " jkenter
+clear
 echo "modprobe -rf b43"
 echo "/etc/init.d/networking restart"
 /etc/init.d/networking restart
+read -p "press enter: " jkenter
 echo "ip link set dev wlan0 up"
 echo "iw dev wlan0 link oder iwconfig"
 iw dev wlan0 link
+read -p "press enter: " jkenter
 iwconfig
+read -p "press enter: " jkenter
 echo "systemctl status networking"
-
+read -p "press enter: " jkenter
+ping -c4 8.8.8.8
