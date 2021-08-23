@@ -1,1 +1,4 @@
 cp interfaces.1.kabeldhcp /etc/network/interfaces
+/etc/init.d/networking restart
+ifup eth0
+ping -c4 8.8.8.8

@@ -1,4 +1,19 @@
+cp default.conf /etc/wpa_supplicant
+chmod 600 /etc/wpa_supplicant/default.conf
 read -p "ssid: " jkssid
 read -p "pw: " jkpw
 wpa_passphrase $jkssid $jkpw >> /etc/wpa_supplicant/default.conf
 cp interfaces.3.wlandhcp /etc/network/interfaces
+echo "Kontrolle:"
+cat /etc/wpa_supplicant/default.conf
+echo "testen: rfkill list unblock 0 1 2 "
+rfkill list
+echo "modprobe -rf b43"
+echo "/etc/init.d/networking restart"
+/etc/init.d/networking restart
+echo "ip link set dev wlan0 up"
+echo "iw dev wlan0 link oder iwconfig"
+iw dev wlan0 link
+iwconfig
+echo "systemctl status networking"
+
