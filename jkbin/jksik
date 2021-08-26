@@ -1,0 +1,14 @@
+#/bin/bash
+date
+echo "Sicherungskopie von $1" 
+# -------------------------------------
+#read -p "Are you sure?!? [y/N]: " sure 
+#case "$sure" in 
+#	[yY]) 
+#				mkdir -p ./sik
+#				cp $1 ./sik/$1-`date +%Y%m%d-%R`;;
+#	*)		echo "dann halt nicht!"
+#				exit;; 
+#esac 
+mkdir -p ./sik
+cp $1 ./sik/$1-`date +%Y%m%d-%R`

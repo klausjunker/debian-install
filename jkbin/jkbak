@@ -1,0 +1,13 @@
+#/bin/bash
+echo "Backup von $1"
+# -------------------------------------
+#read -p "Are you sure?!? [y/N]: " sure 
+#case "$sure" in 
+#	[yY]) 
+#				mkdir -p ./temp
+#				cp $1 ./temp/$1-`date +%Y%m%d-%H%M%S`;;
+#	*)		echo "dann halt nicht!"
+#				exit;; 
+#esac 
+mkdir -p ./temp
+cp $1 ./temp/$1-`date +%Y%m%d-%H%M%S`

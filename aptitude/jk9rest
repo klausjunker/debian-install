@@ -1,5 +1,5 @@
 # datenbanken
-aptitude install default-mysql-client default-mysql-server mdbtools -y
+# aptitude install default-mysql-client default-mysql-server mdbtools -y
 #mathe
 aptitude install sagemath -y
 #tex

@@ -1,2 +1,0 @@
-#!/bin/bash
-sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list

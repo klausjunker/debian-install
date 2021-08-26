@@ -1,4 +1,0 @@
-aptitude update
-aptitude install firmware-b43-installer b43-fwcutter -y
-aptitude install net-tools -y
-aptitude install rfkill wireless-tools wpasupplicant lshw -y
