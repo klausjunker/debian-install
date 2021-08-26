@@ -1,9 +1,9 @@
 #!/bin/bash
 sed -i 's/FONTFACE/#FONTFACE/g' /etc/default/console-setup
 sed -i 's/FONTSIZE/#FONTSIZE/g' /etc/default/console-setup
-echo 'FONTFACE="TerminusBold"' >> /etc/defalut/console-setup
-echo 'FONTSIZE="12x24"' >> /etc/defalut/console-setup
-echo 'BEEP=OFF' >> /etc/defalut/console-setup
+echo 'FONTFACE="TerminusBold"' >> /etc/default/console-setup
+echo 'FONTSIZE="12x24"' >> /etc/default/console-setup
+echo 'BEEP=OFF' >> /etc/default/console-setup
 /etc/init.d/console-setup.sh restart
 cp skel/.[a-z]* /root
 cp skel/.[a-z]* /etc/skel
