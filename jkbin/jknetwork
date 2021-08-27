@@ -1,0 +1,37 @@
+#/bin/bash
+echo "jk netzwerk einrichten"
+echo  " Auswahl:"
+echo  " 1 eth0  - dhcp"
+echo  " 2 eth0  - static"
+echo  " 3 wlan  - dhcp"
+echo  " 4 wlan  - static"
+
+# -------------------------------------
+read -p "Auswahl: " jkantwort 
+case "$jkantwort" in 
+	[1])	
+				echo "1"
+				cp ../config/network/interfaces.1.kabeldhcp /etc/network/interfaces
+				/etc/init.d/networking/restart
+				;;			
+	[2])	
+				echo "2"
+				cp ../config/network/interfaces.2.kabelstatic /etc/network/interfaces
+				/etc/init.d/networking/restart
+				;;
+	[3])	
+				echo "3"
+				cp ../config/network/interfaces.3.wlandhcp /etc/network/interfaces
+				/etc/init.d/networking/restart
+				;;
+	[4])	
+				echo "4"
+				cp ../config/network/interfaces.4.wlanstatic /etc/network/interfaces
+				/etc/init.d/networking/restart
+				;;
+				
+	*)		echo "dann halt nicht - keine Änderung"
+				exit;; 
+esac 
+echo "test:"
+ping -c4 8.8.8.8

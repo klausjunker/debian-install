@@ -1,0 +1,12 @@
+#/bin/bash
+echo "jk hallo welt"
+# -------------------------------------
+read -p "Are you sure?!? [y/N]: " sure 
+case "$sure" in 
+	[yY]) 
+				echo "ok";; 
+				
+	*)		echo "dann halt nicht!"
+				exit;; 
+esac 
+echo "ok"
