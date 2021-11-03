@@ -1,5 +1,7 @@
 #!/bin/bash
-echo "/home/gast/.my.cnf -- anpassen" 
+gelb="\e[1;33m"
+normal="\e[m"
+echo -e "$gelb /home/gast/.my.cnf -- anpassen $normal" 
 echo "database=gast" >> /home/gast/.my.cnf
 echo "[client]" >> /home/gast/.my.cnf
 echo "user=gast" >> /home/gast/.my.cnf

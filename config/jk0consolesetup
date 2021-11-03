@@ -1,5 +1,7 @@
 #!/bin/bash
-echo "/etc/default/console-setup  -- anpassen"
+gelb="\e[1;33m"
+normal="\e[m"
+echo -e "$gelb /etc/default/console-setup  -- anpassen \e[m"
 sed -i 's/FONTFACE/#FONTFACE/g' /etc/default/console-setup
 sed -i 's/FONTSIZE/#FONTSIZE/g' /etc/default/console-setup
 echo 'FONTFACE="TerminusBold"' >> /etc/default/console-setup

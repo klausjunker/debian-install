@@ -14,6 +14,11 @@
 :set noswapfile			" kein swap-file
 :set foldmethod=marker  " default {{{ }}}
 "---------------------------------------------------------------
+augroup sql
+	autocmd!
+	autocmd BufNew,BufEnter /tmp/sql* setlocal filetype=sql
+augroup END
+"---------------------------------------------------------------
 " Mapping
 "---------------------------------------------------------------
 :map <F2>   :!jkbak %<cr><cr>:w<CR>
