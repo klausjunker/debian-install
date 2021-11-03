@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "/etc/default/console-setup  -- anpassen"
 sed -i 's/FONTFACE/#FONTFACE/g' /etc/default/console-setup
 sed -i 's/FONTSIZE/#FONTSIZE/g' /etc/default/console-setup
 echo 'FONTFACE="TerminusBold"' >> /etc/default/console-setup
@@ -8,9 +9,3 @@ echo 'BEEP=OFF' >> /etc/default/console-setup
 cp skel/.[a-z]* /root
 cp skel/.[a-z]* /etc/skel
 cp skel/.[a-z]* /home/gast
-echo "database=gast" >> /home/gast/.my.cnf
-echo "[client]" >> /home/gast/.my.cnf
-echo "user=gast" >> /home/gast/.my.cnf
-echo "password=gast" >> /home/gast/.my.cnf
-chown gast.gast /home/gast/.[a-z]* 
-mysql < mysql/createusergast.sql 

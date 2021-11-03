@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "aptitude update: main contrib non-free"
+apt-get install aptitude -y
+sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
+aptitude update

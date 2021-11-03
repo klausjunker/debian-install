@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "/home/gast/.my.cnf -- anpassen" 
+echo "database=gast" >> /home/gast/.my.cnf
+echo "[client]" >> /home/gast/.my.cnf
+echo "user=gast" >> /home/gast/.my.cnf
+echo "password=gast" >> /home/gast/.my.cnf
+chown gast.gast /home/gast/.[a-z]* 
+mysql < mysql/createusergast.sql 

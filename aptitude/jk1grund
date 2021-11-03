@@ -1,5 +1,4 @@
-apt-get install aptitude -y
-sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
-aptitude update
+#!/bin/bash
+echo "install mc ssh vim mysql"
 aptitude install mc ssh vim -y
 aptitude install default-mysql-client default-mysql-server mdbtools -y

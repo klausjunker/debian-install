@@ -1,5 +1,6 @@
-# datenbanken
-# aptitude install default-mysql-client default-mysql-server mdbtools -y
+echo "install mathe tex ... rest"
+#python
+
 #mathe
 aptitude install sagemath -y
 #tex
