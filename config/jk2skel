@@ -1,0 +1,7 @@
+#!/bin/bash
+jkecho "skel/root/gast -- einrichten"
+	cp skel/.[a-z]* /etc/skel
+	cp skel/.[a-z]* /root
+	cp skel/.[a-z]* /home/gast
+	cp mysql/gast/.my.cnf /home/gast 
+	chown gast.gast /home/gast/.[a-z]* 

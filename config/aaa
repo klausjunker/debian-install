@@ -1,0 +1,3 @@
+#!/bin/bash
+jkecho "skel -- anpassen"
+cp skel/.[a-z]* /etc/skel

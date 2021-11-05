@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "--- $0 ausführen"
+cp jkbin/* /usr/local/bin
+cp jksbin/* /usr/local/sbin

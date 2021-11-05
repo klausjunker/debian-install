@@ -1,4 +1,5 @@
-./aptitude/jk3wlan
-./aptitude/jk8x
-./aptitude/jk9rest
-./aptitude/jk91programmieren
+cd .aptitude
+	bash jk3wlan
+	bash jk8x
+	bash jk9rest
+	bash jk91programmieren
