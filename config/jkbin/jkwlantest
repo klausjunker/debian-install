@@ -4,5 +4,6 @@
 	ip link set dev wlan0 up
 	iw dev wlan0 link 
 	iwconfig
+	jksure "ok" 
 	systemctl status networking
 	jkping
