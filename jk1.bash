@@ -1,4 +1,4 @@
-cd /config
+cd ./config
 	bash jk0copyjkbin
 	bash jk1consolesetup
 	bash jk2skel
