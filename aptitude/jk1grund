@@ -1,7 +1,13 @@
 #!/bin/bash
-LOG="/var/log/debianinstall.log"
+#-----------------------------------------------------------------------------
+jklog debianinstall "start: $0 --- "
+#-----------------------------------------------------------------------------
+#LOG="/var/log/debianinstall.log"
 echo -n "-- start: $0 --- " >>$LOG; date >> $LOG
 echo "install mc ssh vim mysql"
 aptitude install mc ssh vim -y
 aptitude install default-mysql-client default-mysql-server mdbtools -y
 echo -n "--  ende: $0 --- " >>$LOG; date >> $LOG
+#-----------------------------------------------------------------------------
+jklog debianinstall "ende:  $0 --- "
+#-----------------------------------------------------------------------------
