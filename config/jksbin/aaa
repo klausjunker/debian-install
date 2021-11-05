@@ -1,16 +1,21 @@
 #!/bin/bash
-gelb="\e[1;33m";rot="\e[1;31m";normal="\e[m"
+gelb="\e[1;33m"
+rot="\e[1;31m"
+normal="\e[m"
 #-----------------------------------------------------------------------------
-jklog debianinstall "start: $0 --- "
+LOG="/var/log/debianinstall.log"
+echo -n "-- start: $0 --- " >>$LOG; date >> $LOG
 #-----------------------------------------------------------------------------
 #python
 echo -n "start: $0 --- "; date
 
 #echo -e "${gelb}Start (Konsole)" >&9
 #mathe
-echo -e "${gelb}install sagemath  $normal"
-aptitude install sagemath -y
-#tex
+echo -e "${gelb}install lazarus  $normal"
+aptitude install lazarus -y
+echo -n "--  ende: $0 --- " >>$LOG; date >> $LOG
+exit 
+#texd
 echo -e "${gelb}install tex  $normal"
 aptitude install texlive texlive-science texlive-lang-german  texlive-bibtex-extra  -y
 aptitude install texlive-fonts-extra  texlive-extra-utils  texlive-games  texlive-metapost  -y
@@ -49,6 +54,5 @@ aptitude install man manpages-de less -y
 echo -e "${gelb}install allerlei .... $normal"
 aptitude install playonlinux -y
 
-#-----------------------------------------------------------------------------
-jklog debianinstall "ende:  $0 --- "
-#-----------------------------------------------------------------------------
+echo -n "ende:  $0 --- "; date
+#echo -en "$rot DEBUG: ende: $0"; date;exit
