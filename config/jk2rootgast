@@ -1,0 +1,12 @@
+#!/bin/bash
+#gelb="\e[1;33m";normal="\e[m"
+#echo -e "$gelb /home/gast/.my.cnf -- anpassen $normal" 
+#echo "database=gast" >> /home/gast/.my.cnf
+#echo "[client]" >> /home/gast/.my.cnf
+#echo "user=gast" >> /home/gast/.my.cnf
+#echo "password=gast" >> /home/gast/.my.cnf
+cp skel/.[a-z]* /root
+cp skel/.[a-z]* /home/gast
+cp mysql/gast/.my.cnf /home/gast # fertige conf-datei
+chown gast.gast /home/gast/.[a-z]* 
+#mysql < mysql/createusergast.sql 

@@ -1,0 +1,5 @@
+#!/bin/bash
+Version="0.10  vom 5.11.2021"
+#mysql < ~/debian-install/config/mysql/showmysqluser.sql
+mysql -e "use mysql; select user  from user;"
+exit 100 # debug

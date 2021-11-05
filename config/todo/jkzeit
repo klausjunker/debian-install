@@ -1,0 +1,6 @@
+hwclock -r  oder  --show 
+hwclock -wu # utc
+hwclock -w # lokale Zeit
+date -u #utc
+date # lokale Zeit
+

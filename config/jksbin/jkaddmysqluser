@@ -1,5 +1,6 @@
 #!/bin/bash
-Version="0.53  vom 22.8.2021"
+Version="0.60  vom 5.11.2021"
+# Kontrolle ob user vorhanden?
 # NUR mysqluser anlegen
 clear;
 echo "Klaus Junker: $0 --- Version: $Version";
@@ -7,14 +8,32 @@ echo "Klaus Junker: $0 --- Version: $Version";
 if (( $# > 2 )); then echo "$0 - jk - Fehler: max 2  Parameter erlaubt"; exit; fi
 if (( $# < 2 )); then  
 read -p "name: " jkname
-read -p "pw: " jkpw
+#read -p "pw: " jkpw
+echo -n "Passwort: "
+read -s  jkpw
 fi
 if (( $#  == 2 )); then 
 jkname=$1
 jkpw=$2
 fi
-#mysqluser="'$jkname'@'localhost'";
+id -u $jkname > /dev/null
+if [ $? -eq 0 ]; then
+	echo "ok: $jkname existiert "
+else
+	echo "$jkname wird angelegt!"
+	jksure  "benutzer $jkname angelegt"
+	if [ $? -eq 1 ]; then exit 11; fi # Error
+	#exit 222 #debug
+	jkadduser $jkname $jkpw
+fi 
+id -u $jkname 
+echo "database=$jkname" >> /home/$jkname/.my.cnf
+echo "[client]" >> /home/$jkname/.my.cnf
+echo "user=$jkname" >> /home/$jkname/.my.cnf
+echo "password=$jkname" >> /home/$jkname/.my.cnf
 mysql -e "create user if not exists $jkname   identified by '$jkpw';"
 mysql -e "grant all on $jkname.* to $jkname";
 mysql -e "create database if not exists $jkname;";
 mysql -e "show grants for $jkname;";
+echo "ende: $0"
+exit 100 # debug

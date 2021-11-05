@@ -1,0 +1,6 @@
+#/bin/bash
+read -p "Eingabe: " jkeingabe 
+echo "$jkeingabe"
+echo -n "Eingabe2: "
+read -s  jkeingabe 
+echo "$jkeingabe"
