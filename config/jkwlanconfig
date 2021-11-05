@@ -12,8 +12,12 @@ jkecho "network wlan -- vorbereiten"
 	jkecho "kontrolle:" ; cat /etc/wpa_supplicant/default.conf
 	jksure "wpa_supplicant ok"
 	wpa_passphrase $jkssid $jkpw >> /etc/wpa_supplicant/default.conf
+	mkdir -p /etc/network/kabel
+	cp /etc/network/interfaces /etc/network/kabel/interfaces.dhcp
 	cp /etc/network/muster/interfaces.3.wlandhcp /etc/network/interfaces
 	modprobe -rf b43
 	modprobe  b43
+	rfkill
+	jksure "ok"
 	/etc/init.d/networking restart
 	jkping
