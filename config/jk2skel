@@ -1,4 +1,5 @@
 #!/bin/bash
+jklog debianinstall "skel/root/gast/einrichten"
 jkecho "skel/root/gast -- einrichten"
 	cp skel/.[a-z]* /etc/skel
 	cp skel/.[a-z]* /root
