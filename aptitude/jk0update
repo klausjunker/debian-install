@@ -1,5 +1,13 @@
 #!/bin/bash
-echo "aptitude update: main contrib non-free"
-apt-get install aptitude -y
-sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
-aptitude update
+#-----------------------------------------------------------------------------
+jklog debianinstall "start: $0 --- "
+#-----------------------------------------------------------------------------
+jkecho "install aptitude"
+	jklog debianinstall "-1: aptitude"
+		apt-get install aptitude -y
+jkecho "aptitude update: main contrib non-free"
+		sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
+		aptitude update
+#-----------------------------------------------------------------------------
+jklog debianinstall "ende:  $0 --- "
+#-----------------------------------------------------------------------------

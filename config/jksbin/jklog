@@ -3,4 +3,5 @@ LOGDIR="/var/log"
 LOGFILE="${LOGDIR}/$1.log"
 echo "$LOGFILE"
 echo -n "$2 --- " >>$LOGFILE; date >> $LOGFILE
-cat $LOGFILE
+#cat $LOGFILE
+tail -n 5 $LOGFILE

@@ -1,4 +1,12 @@
-aptitude update
-aptitude install firmware-b43-installer b43-fwcutter -y
-aptitude install net-tools -y
-aptitude install rfkill wireless-tools wpasupplicant lshw -y
+#!/bin/bash
+#-----------------------------------------------------------------------------
+jklog debianinstall "start: $0 --- "
+#-----------------------------------------------------------------------------
+jkecho "install wlan"
+	jklog debianinstall "-1: wlan.. "
+		aptitude install firmware-b43-installer b43-fwcutter -y
+		aptitude install net-tools -y
+		aptitude install rfkill wireless-tools wpasupplicant lshw -y
+#-----------------------------------------------------------------------------
+jklog debianinstall "ende:  $0 --- "
+#-----------------------------------------------------------------------------

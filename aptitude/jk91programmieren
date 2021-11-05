@@ -1,57 +1,14 @@
 #!/bin/bash
-gelb="\e[1;33m";rot="\e[1;31m";normal="\e[m"
 #-----------------------------------------------------------------------------
 jklog debianinstall "start: $0 --- "
 #-----------------------------------------------------------------------------
 #python
-echo -n "start: $0 --- "; date
-
-#echo -e "${gelb}Start (Konsole)" >&9
-#mathe
-echo -e "${gelb}install lazarus  $normal"
-aptitude install lazarus -y
-echo -n "--  ende: $0 --- " >>$LOG; date >> $LOG
-exit 
-#texd
-echo -e "${gelb}install tex  $normal"
-aptitude install texlive texlive-science texlive-lang-german  texlive-bibtex-extra  -y
-aptitude install texlive-fonts-extra  texlive-extra-utils  texlive-games  texlive-metapost  -y
-aptitude install texlive-pstricks texlive-humanities  -y
-aptitude install latexila -y
-
-#browser
-echo -e "${gelb}install firefox  $normal"
-aptitude install firefox-esr firefox-esr-l10n-de chromium chromium-l10n w3m lynx -y
-
-#office
-echo -e "${gelb}install libreoffice  $normal"
-aptitude install libreoffice-calc libreoffice-writer libreoffice-help-de -y
-#pdf
-echo -e "${gelb}install pdf $normal"
-aptitude install atril evince xpdf zathura -y
-#ebook
-echo -e "${gelb}install ebook $normal"
-aptitude install djview calibre -y
-#ftp
-echo -e "${gelb}install ftp $normal"
-aptitude install filezilla -y
-#medien
-echo -e "${gelb}install medien $normal"
-aptitude install vlc -y
-#java
-echo -e "${gelb}install java $normal"
-aptitude install default-jre default-jdk  -y
-#bilder
-echo -e "${gelb}install bilder $normal"
-aptitude install feh fbi -y
-#man
-echo -e "${gelb}install manpages $normal"
-aptitude install man manpages-de less -y
-#
-echo -e "${gelb}install allerlei .... $normal"
-aptitude install playonlinux -y
-
-echo -n "ende:  $0 --- "; date
+jkecho "install lazarus"
+	jklog debianinstall "-91-1: lazarus.. "
+		aptitude install lazarus -y
+jkecho "install java"
+	jklog debianinstall "-91-2: java.."
+		aptitude install default-jre default-jdk  -y
 #-----------------------------------------------------------------------------
 jklog debianinstall "ende:  $0 --- "
 #-----------------------------------------------------------------------------

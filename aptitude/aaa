@@ -1,0 +1,3 @@
+jkecho "install "
+	jklog debianinstall "-1: "
+		aptitude install 
