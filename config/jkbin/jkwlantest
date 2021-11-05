@@ -1,0 +1,8 @@
+#!/bin/bash
+	rfkill 
+	#rfkill unblock wlan
+	ip link set dev wlan0 up
+	iw dev wlan0 link 
+	iwconfig
+	systemctl status networking
+	jkping
