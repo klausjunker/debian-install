@@ -5,5 +5,3 @@ cd ./config
 cd ../aptitude
 	bash jk0aptitude
 	bash jk1mcsshvim
-	bash jk2mysql
-jkaddmysqluser gast gast
