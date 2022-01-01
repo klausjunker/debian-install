@@ -1,0 +1,224 @@
+#------------------------------------------------------------------
+# jkinitab 31.12.2021
+#------------------------------------------------------------------
+jkdatum=`date +"%d.%m.%Y"`
+jkversion="ver `date +%y-%m`"
+#------------------------------------------------------------------
+jkklasse=`dialog --menu "Klasse:" 0 0 0  \
+				"BKFH" ""\
+				"WGFJS2" ""\
+				"WG82" ""\
+				"BK11" ""\
+				"BK14" ""\
+				""					"keine Klasse"\
+				 3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+jkfach=`dialog --menu "Fach: " 0 0 0 \
+				"mathe" "Mathematik" \
+				"informatik" "Informatik" \
+				"config" "Konfiguration" \
+				3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+
+#------------------------------------------------------------------
+# Anfang jkpart
+#------------------------------------------------------------------
+jkpart2=""
+if [ $jkfach == "mathe" ]; then
+		jkpart=`dialog --menu "Part: " 0 0 0 \
+				"ana" "Analysis" \
+				"alg" "Algebra" \
+				"vek" "Vektoren" \
+				"sto" "Stochastik" \
+				"geo" "Geometrie" \
+				"menge" "Mengenlehre" \
+				3>&1 1>&2 2>&3`
+fi
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+
+if [ $jkpart == "ana" ]; then
+		jkpart2=`dialog --menu "Part: " 0 0 0 \
+				"d" "Differenzialrechnung" \
+				"p" "Polynomfunktion" \
+				"e" "Exponentialfunktion" \
+				"t" "trig. Funktionen" \
+				3>&1 1>&2 2>&3`
+fi
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+if [ $jkfach == "informatik" ]; then
+		jkpart=`dialog --menu "Part: " 0 0 0 \
+				"mysql" "mysql" \
+				3>&1 1>&2 2>&3`
+fi
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+if [ $jkfach == "config" ]; then
+		jkpart=`dialog --menu "Part: " 0 0 0 \
+				"userguide" "userguide" \
+				"install" "install" \
+				3>&1 1>&2 2>&3`
+fi
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+jkpart=$jkpart$jkpart2
+#------------------------------------------------------------------
+# Ende jkpart
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+jkdefaultkapitel=`cat /extern/muster/defaultkapitel`
+jkkapitel=`dialog --inputbox "Kapitel: " 0 0 "$jkdefaultkapitel" 3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+echo "$jkkapitel" > /extern/muster/defaultkapitel
+
+#------------------------------------------------------------------
+jkdefaultthema=`cat /extern/muster/defaultthema`
+jkthema=`dialog --inputbox "Thema: " 0 0 "$jkdefaultthema"  	3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then echo "JK-Error - Abbruch";  exit; 	fi
+if [ $jkthema =="" ]; then  echo "JK-Error- kein Thema!";  exit; fi
+echo "$jkthema" > /extern/muster/defaultthema
+
+#------------------------------------------------------------------
+#jkfachkurz=${jkfach:0:1} # erster  Buchstabe
+#jkkapitelkurz=${jkkapitel:0:3} # erste 3  Buchstaben
+
+#------------------------------------------------------------------
+dialog --yesno \
+	"		Alles ok? \n \
+				Datum:       $jkdatum  \n \
+				Version:     $jkversion  \n \
+				Klasse:      $jkklasse \n \
+				Fach:        $jkfach   \n \
+				Part:        $jkpart   \n \
+				Kapitel:     $jkkapitel  \n \
+				Thema:       $jkthema  \n \
+	"		0 0 3>&1 1>&2 2>&3
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#echo "ok" ; exit
+#-----------------------------------------------------------------
+
+#------------------------------------------------------------------
+# verzeichnisse
+#------------------------------------------------------------------
+DIRFACH="/extern/home/jkdok/jktex/jk$jkfach"
+DIRPART="$DIRFACH/$jkpart"						
+DIRKAPITEL="$DIRPART/$jkkapitel"							
+DIRTHEMA="$DIRKAPITEL/$jkthema"		
+DIRAB="$DIRFACH/AB/$jkpart-$jkkapitel"						
+DIRPA="$DIRFACH/PA/$jkpart-$jkklasse"						
+DIRFA="$DIRFACH/FA/$jkfach-$jkklasse"						
+DIRHOCH=".."								
+DIRHOCH2="../.."					
+DIRHOCH3="../../.."					
+DIRRELKAP="$DIRHOCH2/$jkpart/$jkkapitel"
+#------------------------------------------------------------------
+mkdir -p "$DIRAB"
+mkdir -p "$DIRPA"
+mkdir -p "$DIRFA"
+#------------------------------------------------------------------
+# dateien
+#------------------------------------------------------------------
+JKKAPFILE="$jkpart-$jkkapitel.tex"										 
+JKTHEMAFILE="$jkpart-$jkkapitel-$jkthema.tex"				
+
+JKABFILEOE="jk-$jkpart-$jkkapitel-$jkklasse"						   
+JKPAFILEOE="jk-$jkpart-$jkklasse"			  				
+JKFAFILEOE="jk$jkfach-$jkklasse"			
+
+JKABFILE="$JKABFILEOE.tex"							# mit Endung	 -> Main1
+JKPAFILE="$JKPAFILEOE.tex"							# mit Endung	 -> Main2
+JKFAFILE="$JKFAFILEOE.tex"							# mit Endung	 -> Main3
+#------------------------------------------------------------------
+# makefiles
+#------------------------------------------------------------------
+#cd $DIRBASE/$DIRFA # XXY
+cd $DIRFA 
+	echo "Name=$JKFAFILEOE"									>	 Makefile
+	cat /extern/muster/skript/Makefile.v1	  >> Makefile
+cd $DIRPA
+	echo "Name=$JKPAFILEOE"									>	 Makefile
+	cat /extern/muster/skript/Makefile.v1	  >> Makefile
+cd $DIRAB
+	echo "Name=$JKABFILEOE"									>	 Makefile
+	cat /extern/muster/skript/Makefile.v1	  >> Makefile
+
+#------------------------------------------------------------------
+# themafile subsection
+#------------------------------------------------------------------
+if  [ $jkthema == "asdf" ]
+	then
+			echo "---> JKDEBUG-0 Thema ist asdf!"
+	else
+		mkdir -p "$DIRTHEMA"					# alle verzeichnisse erzeugt
+		cd $DIRTHEMA 
+		if  [ -s "$JKTHEMAFILE" ] 
+			then
+				echo "---> JKERROR-1: Thema: $JKTHEMAFILE existiert bereits -> ABBRUCH!"
+			exit
+		fi
+		echo "\\subsection{$jkthema}"	> $JKTHEMAFILE
+	fi
+
+
+#------------------------------------------------------------------
+# AB-main
+#------------------------------------------------------------------
+cd $DIRAB
+if  [ -s "$JKABFILE" ]
+	then
+		echo "---> JKDEBUG-1: Main-File: $JKABFILE existiert bereits"
+	else
+		cat /extern/muster/skript/AB.tex				>	$JKABFILE
+		echo "\\cfoot{$jkklasse}"								> $DIRAB/fancy.tex
+fi
+#-----------------------------------------------------------------
+# PA-main
+#-----------------------------------------------------------------
+cd $DIRPA
+if  [ -s "$JKPAFILE" ] 
+	then
+		echo "---> JKDEBUG-2: Main-File: $JKPAFILE existiert bereits"		
+	else
+		cat /extern/muster/skript/PA.tex				>	$JKPAFILE
+		echo "\\cfoot{$jkklasse}"								> $DIRPA/fancy.tex
+		echo "\\lhead{$jkpart}"									>> $DIRPA/fancy.tex
+	fi
+#-----------------------------------------------------------------
+# FA-main
+#------------------------------------------------------------------
+cd $DIRFA
+if  [ -s "$JKFAFILE" ] 
+	then
+		echo "---> JKDEBUG-3: Main-File: $JKFAFILE existiert bereits"		
+	else
+		cat /extern/muster/skript/FA.tex  			>	$JKFAFILE
+		echo "\\cfoot{$jkklasse}"								> $DIRFA/fancy.tex
+		echo "\\lhead{$jkfach}"									>> $DIRFA/fancy.tex
+	fi
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+# kapfile section
+#------------------------------------------------------------------
+cd $DIRKAPITEL
+if ! [ -s "$JKKAPFILE" ] 
+  then 
+      echo "---> JKDEBUG-4:  $JKKAPFILE does not exist or is empty "
+			echo "\\section{$jkkapitel}"										>	 $JKKAPFILE
+			echo "\\pdfbookmark{$jkkapitel}{$jkkapitel}"		>> $JKKAPFILE
+			echo "\\rfoot{$jkversion}"											>> $JKKAPFILE
+		  # aktualisieren von Main-Files:
+      echo "---> JKDEBUG-5:  3 Mal: inhalt.tex aktualisiert "
+			echo "%vim: $DIRRELKAP/$JKKAPFILE"					>> $DIRAB/inhalt.tex
+			echo "\\import{$DIRRELKAP/}{$JKKAPFILE}"		>> $DIRAB/inhalt.tex
+			echo "%vim: $DIRRELKAP/$JKKAPFILE"					>> $DIRFA/inhalt.tex
+			echo "\\import{$DIRRELKAP/}{$JKKAPFILE}"		>> $DIRFA/inhalt.tex
+			echo "%vim: $DIRRELKAP/$JKKAPFILE"					>> $DIRPA/inhalt.tex
+			echo "\\import{$DIRRELKAP/}{$JKKAPFILE}"		>> $DIRPA/inhalt.tex
+fi
+if ! [ $jkthema == "asdf" ]
+	then
+			echo "---> JKDEBUG-6:  $JKKAPFILE wird aktualisiert: $JKTHEMAFILE"
+			echo "\\input{$jkthema/$JKTHEMAFILE}"	>> $JKKAPFILE
+fi

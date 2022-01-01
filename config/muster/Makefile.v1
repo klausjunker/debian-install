@@ -1,0 +1,36 @@
+#-------------------------------------------------------
+# Klaus Junker version 29.12.2021 (jkskript) Makefile.v1
+#-------------------------------------------------------
+.PHONY: default all init zathura atril evince compile python 
+
+IncludeDateien= *.tex ../../*/*/*.tex 
+#interne Variablen:
+#-------------------------------------------------------
+WorkDir=.
+TempDir=../../build
+PdfDir=../../pdf
+Input=$(Name).tex
+MainPdf=$(Name).pdf
+#-------------------------------------------------------
+default:			compile
+			@echo "default: $(Name)"
+all:					compile 
+			@echo "all"
+#-------------------------------------------------------
+zathura: 				compile	
+			zathura $(PdfDir)/$(MainPdf)
+atril: 					compile	
+			atril $(PdfDir)/$(MainPdf)
+evince: 				compile	
+			evince $(PdfDir)/$(MainPdf)
+#-------------------------------------------------------
+python: 	$(TempDir)/$(Name).pytxcode			
+			pythontex3 $(TempDir)/$(Name).pytxcode
+compile:	$(WorkDir)/$(Input) $(IncludeDateien)
+			@echo -n "compile: "; date +'%H:%M:%S'
+			@mkdir -p $(TempDir)
+			@mkdir -p $(PdfDir)
+			@echo -n "pdflatex: "; date +'%H:%M:%S'
+			@pdflatex  -output-directory=$(TempDir) $(Input)
+			mv $(TempDir)/$(MainPdf) $(PdfDir)/$(MainPdf)
+#-------------------------------------------------------

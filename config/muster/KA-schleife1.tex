@@ -1,0 +1,11 @@
+\setcounter{jkci}{0}
+\DTLforeach{liste}{\sKlasse=Klasse,\sVN=Vorname,\sNN=Name,\sSID=Nummer}
+{
+	\chead{\thejkci\, - \sVN \,  \sNN - \sKlasse}
+	\stepcounter{jkci}
+	\cfoot{Teil 1 - ohne Taschenrechner}
+	\setcounter{section}{0}
+	\input{aufgaben1.tex}	
+%	\jkergebnis  
+	\newpage
+}	

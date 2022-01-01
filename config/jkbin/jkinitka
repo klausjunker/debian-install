@@ -1,0 +1,146 @@
+#------------------------------------------------------------------
+# jkinitka 1.1.2022
+#------------------------------------------------------------------
+DIRTEMP="/tmp/jkbin"
+mkdir -p $DIRTEMP; cd $DIRTEMP
+if ! [ -s "defaultschuljahr" ]; then touch defaultschuljahr; fi
+jkdefaultschuljahr=`cat defaultschuljahr`
+jkschuljahr=`dialog --inputbox "Schuljahr: " 0 0 "$jkdefaultschuljahr"  3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+echo "$jkschuljahr" > defaultschuljahr
+#------------------------------------------------------------------
+jkdatum=`dialog --date-format %Y-%m-%d --iso-week --no-cancel \
+				--calendar  'Termin KA' 0 0 \
+				3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+jkklasse=`dialog --menu "Klassenarbeit" 0 0 0  \
+				"BKFH" ""\
+				"WGFJS2" ""\
+				"WG82" ""\
+				"BK11" ""\
+				"BK14" ""\
+				 3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+jkfach=`dialog --menu "Fach: " 0 0 0 \
+				"Mathematik" ""\
+				"Informatik" ""\
+				3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+jktyp=`dialog --menu "Typ" 0 0 0 \
+				"KA" "Klassenarbeit"\
+				"Test" "Test"\
+				3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+#------------------------------------------------------------------
+jkdefaultkathema=`cat $DIRTEMP/defaultkathema`
+jkthema=`dialog --inputbox "Thema: " 0 0 "$jkdefaultkathema"  3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+echo "$jkthema" > $DIRTEMP/defaultkathema
+#------------------------------------------------------------------
+jkdefaultkanummer=`cat $DIRTEMP/defaultkanummer`
+jknummer=`dialog --inputbox "Nummer: " 0 0 "$jkdefaultkanummer"  3>&1 1>&2 2>&3`
+if [ $? -ne 0 ]; then  echo "JK-Error - Abbruch";  exit; fi
+echo "$jknummer" > $DIRTEMP/defaultkanummer
+#------------------------------------------------------------------
+jkfachkurz=${jkfach:0:1} # erster Buchstabe
+jktypkurz=${jktyp:0:1}	
+#------------------------------------------------------------------
+dialog --yesno \
+	"		Alles ok? \n \
+				Datum:  $jkdatum  \n \
+				Klasse: $jkklasse \n \
+				Fach:   $jkfach   \n \
+				Thema:  $jkthema  \n \
+				Typ:    $jktyp    \n \
+				Nummer: $jknummer \n \
+				Schulj: $jkschuljahr \n \
+	"		0 0 3>&1 1>&2 2>&3
+if [ $? -ne 0 ]; then echo "JK-Error!";  exit; fi
+#------------------------------------------------------------------
+echo "Datum:  $jkdatum"
+echo "Klasse: $jkklasse"
+echo "Typ:    $jktyp"
+echo "Thema:  $jkthema"
+echo "Fach:   $jkfach"
+echo "Schulj: $jkschuljahr"
+#------------------------------------------------------------------
+# verzeichnisse
+#------------------------------------------------------------------
+DIRBASE="/extern/home/jkdok/jkka"    
+DIRKA="$DIRBASE/$jkschuljahr/$jkfach/$jkklasse/$jktyp$jknummer-$jkdatum"
+DIRA="$DIRKA/a"
+#------------------------------------------------------------------
+mkdir -p "$DIRKA"
+mkdir -p "$DIRA"
+#------------------------------------------------------------------
+#csv copy
+python3.9 /usr/local/bin/jkpy/jkcsvcopy.py \
+				--klasse $jkklasse --fach $jkfach \
+				--typ $jktyp --datum $jkdatum \
+				--nummer $jknummer --schuljahr $jkschuljahr \
+				--inputdir "/extern/home/jkdok/jkschule" \
+				--outputdir "/extern/home/jkdok/jkka"
+#------------------------------------------------------------------
+# KA (main) datei
+#------------------------------------------------------------------
+JKKAFILEOE=$jkklasse-$jkfachkurz-$jktypkurz$jknummer-$jkdatum
+JKKAFILE=$DIRKA/$JKKAFILEOE.tex
+#------------------------------------------------------------------
+# makefiles
+#------------------------------------------------------------------
+cd $DIRKA
+	echo "Name=$JKKAFILEOE"								  >	 Makefile
+	cat /extern/muster/skript/Makefile.v1	  >> Makefile
+#exit #XXX
+#------------------------------------------------------------------
+# KA-main
+#------------------------------------------------------------------
+cd $DIRKA
+if  [ -s "$JKKAFILE" ]
+	then
+		echo "---> JKERROR-1: Main-File: $JKKAFILE existiert bereits"
+#		exit;
+fi
+#------------------------------------------------------------------
+for i in {11..15}
+  do 
+		echo "%Teil1 - Aufgabe $i: $jkklasse - $jkthema - $jkfach - $jkdatum}"	> a/a$i.tex
+		echo "\\section{}  Aufgabe $i"	>> a/a$i.tex
+		echo "\\input{a/a$i.tex}"				>>  aufgaben1.tex
+ done 
+#------------------------------------------------------------------
+#------------------------------------------------------------------
+for i in {21..27}
+  do 
+		echo "%Teil2 - Aufgabe $i: $jkklasse - $jkthema - $jkfach - $jkdatum}"	> a/a$i.tex
+		echo "\\section{}  Aufgabe $i"	>> a/a$i.tex
+		echo "\\input{a/a$i.tex}"				>>  aufgaben2.tex
+ done 
+#------------------------------------------------------------------
+#------------------------------------------------------------------
+for i in {1..12}
+  do 
+		echo "%Aufgabe $i: $jkklasse - $jkthema - $jkfach - $jkdatum}"	> a/a$i.tex
+		echo "\\section{}  Aufgabe $i"	> a/a$i.tex
+		echo "\\input{a/a$i.tex}"									>>  aufgaben.tex
+ done 
+#------------------------------------------------------------------
+cat /extern/muster/skript/KA.tex							>	$JKKAFILE
+cat /extern/muster/skript/KA-schleife.tex			>	schleife.tex
+cat /extern/muster/skript/KA-schleife1.tex		>	schleife1.tex
+cat /extern/muster/skript/KA-schleife2.tex		>	schleife2.tex
+
+
+echo "\\lhead{$jktyp-$jkfachkurz-Nr.$jknummer}"	\
+																						>	 $DIRKA/fancy.tex
+echo "\\rhead{$jkdatum}"										>> $DIRKA/fancy.tex
+echo "\\rfoot{$jkfach}"											>> $DIRKA/fancy.tex
+echo "\\DTLloaddb{liste}{$jkklasse.csv}"	>> $DIRKA/fancy.tex
+
+echo "---Ende: $0"
+#-----------------------------------------------------------------
+
+
