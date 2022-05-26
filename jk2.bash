@@ -1,4 +1,4 @@
 cd ./aptitude
 	bash jk3wlan
-cd ../config
-	bash jkwlanconfig
+#cd ../config
+#	bash jkwlanconfig
