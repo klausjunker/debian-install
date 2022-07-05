@@ -1,0 +1,42 @@
+#------------------------------------------------------------------ 
+# klausjunker 5.7.2022
+# git mit ssh
+#------------------------------------------------------------------ 
+1. erzeugen eines ssh-schlüsselpaares:
+ssh-keygen -t ed25519 -C "jk32git"
+
+
+2. ssh-agent im hintergrund starten:
+eval "$(ssh-agent -s)"
+
+3. sh-key hinzufügen
+ssh-add ~/.ssh/id_ed25519
+
+4. xclip -> pub-key in clipboard
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+
+5. firefox:
+https://github.com/settings/keys
+
+6. Testen:
+
+ssh -T git@github.com
+
+
+
+7.
+download ohne ssh/config-einstellungen:
+git clone https://github.com/klausjunker/debian-install
+
+8. 
+cd debian-install
+cd .git
+vim config
+origin löschen oder auskommentieren
+
+
+git remote add origin git@github.com:klausjunker/debian-install.git
+
+9. git add . / git commit / git push
+
+
