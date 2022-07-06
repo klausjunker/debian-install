@@ -1,0 +1,15 @@
+#!/bin/bash
+man console-setup | grep "FONTFACE and FONTSIZE$" -A 5
+read -p "Größe (default 12x24 [yN): jkwert
+case "$jkwert" in
+	[yY]A)
+			$jkwert="12x24";;
+	*) 
+		read -p "Größe:"  jkwert;;
+			
+esac	
+	sed -i 's/FONTFACE/#FONTFACE/g' /etc/default/console-setup
+	sed -i 's/FONTSIZE/#FONTSIZE/g' /etc/default/console-setup
+	echo 'FONTFACE="TerminusBold"' >> /etc/default/console-setup
+	echo "FONTSIZE=$jkwert"' >> /etc/default/console-setup
+	/etc/init.d/console-setup.sh restart
