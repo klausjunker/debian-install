@@ -2,6 +2,7 @@
 " Language:     SQL with SQLite and other additions.
 " Maintainer:   Lorance Stinson <Lorance Stinson AT gmail DOT com>
 " Last Change:  Sun, Aug 21, 2011
+" Junker:       6.7.2022				farbig -> statements: show 
 
 " More complete SQL matching with error reporting.
 " Only matches types inside 'CREATE TABLE ();'.
@@ -107,6 +108,7 @@ syn keyword sqlStatement    alter analyze audit begin comment commit delete
 syn keyword sqlStatement    drop execute explain grant insert lock noaudit
 syn keyword sqlStatement    rename revoke rollback savepoint select
 syn keyword sqlStatement    truncate update vacuum
+syn keyword sqlStatement    show
 syn match   sqlStatement    "\<\(replace\|create\)\>"
 
 " SQLite Statements

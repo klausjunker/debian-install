@@ -1,0 +1,3 @@
+git config --globaluser.email klaus.junker @gmx.de
+git config --globaluser.name klausjunker 
+git config --global core.editor vim
