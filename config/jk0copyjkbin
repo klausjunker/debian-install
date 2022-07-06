@@ -2,3 +2,8 @@
 echo "--- $0 ausführen"
 cp jkbin/* /usr/local/bin
 cp jksbin/* /usr/local/sbin
+cp -r skel/ /etc/
+cp -r root/ /
+cp -r gast/ /home/
+	cd /home/gast
+	chown gast.gast . -R 

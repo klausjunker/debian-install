@@ -1,5 +1,6 @@
 #!/bin/bash
-Version="0.60  vom 5.11.2021"
+Version="0.61  vom 6.7.2021"
+#Fehler in Zeile 33 behoben password=$jkpw!!!
 # Kontrolle ob user vorhanden?
 # NUR mysqluser anlegen
 clear;
@@ -26,11 +27,10 @@ else
 	#exit 222 #debug
 	jkadduser $jkname $jkpw
 fi 
-id -u $jkname 
 echo "database=$jkname" >> /home/$jkname/.my.cnf
 echo "[client]" >> /home/$jkname/.my.cnf
 echo "user=$jkname" >> /home/$jkname/.my.cnf
-echo "password=$jkname" >> /home/$jkname/.my.cnf
+echo "password=$jkpw" >> /home/$jkname/.my.cnf
 mysql -e "create user if not exists $jkname   identified by '$jkpw';"
 mysql -e "grant all on $jkname.* to $jkname";
 mysql -e "create database if not exists $jkname;";
