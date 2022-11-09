@@ -111,14 +111,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-#Bash-Prompt Version 11.3.2018
-PS1='${debian_chroot:+($debian_chroot)}'
-PS1=$PS1'\[\e[1;32m\]\u'
-PS1=$PS1'\[\e[1;34m\]@\h:'
-PS1=$PS1'\[\e[1;33m\]\w'
-PS1=$PS1'\[\e[1;31m\]\$ '
-PS1=$PS1'\[\e[s\]'
-#PS1=$PS1'\[\e[1;$((${COLUMNS}-9))H\e[1;33m\A Uhr\]'
-#PS1=$PS1'\[\e[2;$((${COLUMNS}-4))H\e[1;33m\l\]'
-PS1=$PS1'\[\e[u\e[m\]'
-setterm blength 0
+source .config/bash/junker.alias
+source .config/bash/junker.prompt
