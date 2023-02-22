@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beispiel-Formular</title>
+</head>
+<body>
+	<h1>Beispiel-Formular</h1>
+<SELECT NAME="flavor">
+<OPTION>Vanilla
+<OPTION>Strawberry
+<OPTION value="RumRasin">Rum and Raisin
+<OPTION selected>Peach and Orange
+</SELECT>
+
+
+  <form action="auswertung.php" method="post">
+		<label for="name">Name:</label>
+		<input type="text" name="name" id="name" required><br>
+
+		<label for="email">E-Mail:</label>
+		<input type="email" name="email" id="email" required><br>
+
+		<label for="nachricht">Nachricht:</label>
+		<textarea name="nachricht" id="nachricht" required></textarea><br>
+
+		<input type="submit" value="Absenden">
+	</form>
+</body>
+</html>
+
