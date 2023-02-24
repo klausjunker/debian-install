@@ -29,6 +29,11 @@ download ohne ssh/config-einstellungen:
 git clone https://github.com/klausjunker/debian-install
 
 8. 
+download MIT SSH:
+git clone git@github.com:klausjunker/debian-install.git
+
+
+9.
 cd debian-install
 cd .git
 vim config
@@ -37,6 +42,6 @@ origin löschen oder auskommentieren
 
 git remote add origin git@github.com:klausjunker/debian-install.git
 
-9. git add . / git commit / git push
+10. git add . / git commit / git push
 
 

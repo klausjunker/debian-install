@@ -1,0 +1,27 @@
+als root:
+vim /etc/php/7.4/apache2/php.ini
+
+zeile ca 896: 
+extension=msqli
+systemctl resrtart apache2
+
+
+php für user aktivieren: (per default deaktiviert!!!)
+
+/etc/apache2/mods-available/php7.4.conf
+zeile 23: php_admin_flag engine off 
+auskommentieren also # an zeilenanfang!
+
+
+~/.php.config mit Dateirechten 600
+<?
+// Datenbankkonfiguration
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'gast');
+define('DB_PASSWORD', 'gast');
+define('DB_NAME', 'gast');
+?>
+~/public_html:
+db.php
+formular.html
+
