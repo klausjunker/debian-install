@@ -5,7 +5,7 @@ jklog debianinstall "start: $0 --- "
 jkecho "install xfce"
 	jklog debianinstall "-1: xfce.. "
 		aptitude install xfce4 -y
-	jklog debianinstall "-2: xfcei-terminal"
+	jklog debianinstall "-2: xfce-terminal"
 		aptitude install xfce4-terminal -y
 	jklog debianinstall "-3: xfce-goodies"
 		aptitude install xfce4-goodies -y
