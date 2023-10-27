@@ -5,8 +5,10 @@ jklog debianinstall "start: $0 --- "
 jkecho "install aptitude"
 	jklog debianinstall "0-1: aptitude"
 		apt-get install aptitude -y
-jkecho "aptitude update: main contrib non-free"
-		sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
+#jkecho "aptitude update: main contrib non-free"
+#		sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
+    jksik /etc/apt/sources.list
+    cp 
 		aptitude update
 #-----------------------------------------------------------------------------
 jklog debianinstall "ende:  $0 --- "

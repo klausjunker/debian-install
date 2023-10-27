@@ -2,8 +2,8 @@
 #-----------------------------------------------------------------------------
 jklog debianinstall "start: $0 --- "
 #-----------------------------------------------------------------------------
-jkecho "install mc ssh vim"
-	jklog debianinstall "-1: mc/ssh/vim"
+jkecho "install mc ssh vim nfs-common"
+	jklog debianinstall "-1: mc/ssh/vim/nfs-common"
 		aptitude install mc ssh vim nfs-common -y
 #-----------------------------------------------------------------------------
 jklog debianinstall "ende:  $0 --- "
