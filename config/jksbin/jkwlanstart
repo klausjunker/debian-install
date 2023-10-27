@@ -1,0 +1,20 @@
+#!/bin/bash
+read -p "ssid: " jkssid
+echo -n "pw: "; read -s jkpw
+#----------------------------------------------------------
+wpa_passphrase $jkssid $jkpw >> /etc/wpa_supplicant/default.conf
+jkecho "kontrolle:" ; cat /etc/wpa_supplicant/default.conf
+jksure "wpa_supplicant ok?"
+#----------------------------------------------------------
+cd /etc/network
+jksik interfaces
+vim /etc/network/staticwlan/interfaces
+cp /etc/network/staticwlan/interfaces /etc/network/interfaces
+jkecho "kontrolle:" ; cat /etc/network/interfaces
+jksure "/etc/network/interfaces ok?"
+modprobe -rf b43
+modprobe  b43
+rfkill list
+jksure "ok?"
+/etc/init.d/networking restart
+jkping

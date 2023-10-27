@@ -1,3 +1,3 @@
 cd ./aptitude
-	bash jk2mysql
+	bash jk3mysql
 jkaddmysqluser gast gast

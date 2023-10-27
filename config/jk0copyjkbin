@@ -5,5 +5,5 @@ cp jksbin/* /usr/local/sbin
 cp -r skel/ /etc/
 cp -r root/ /
 cp -r gast/ /home/
-	cd /home/gast
+cd /home/gast
 	chown gast.gast . -R 

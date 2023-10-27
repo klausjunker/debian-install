@@ -16,7 +16,6 @@ https://github.com/settings/keys
 
 6. ssh-Testen:
 ssh -T git@github.com
-
 Es soll eine Meldung erhalten, die den GitHub-Benutzernamen enthält.
 Allerdings mit einer Fehlermeldung (kein shell-Zugriff!)
 
@@ -24,15 +23,11 @@ Allerdings mit einer Fehlermeldung (kein shell-Zugriff!)
 git clone git@github.com:Benutzername/Repository.git
 git clone git@github.com:klausjunker/debian-install
 
-
-
 8. download ohne ssh/config-einstellungen:
 git clone https://github.com/klausjunker/debian-install
-
 dann umstellen auf ssh-zugriff:
 in .git/config editieren: 
   url = git git@github.com:klausjunker/debian-install
-
 oder folgenden Befehl ausführen:
 git remote set-url origin git@github.com:klausjunker/debian-install.git
 

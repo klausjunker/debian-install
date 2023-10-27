@@ -1,0 +1,7 @@
+#!/bin/bash
+jklog debianinstall "network wlan -- vorbereiten"
+jkecho "network wlan -- vorbereiten"
+	cp network/default.conf /etc/wpa_supplicant
+	chmod 600 /etc/wpa_supplicant/default.conf
+	cp -r network/interfaces/*  /etc/network/
+	jkecho "kontrolle:" ; cat /etc/wpa_supplicant/default.conf
