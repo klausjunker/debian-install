@@ -1,8 +1,1 @@
-#/bin/bash
-#SIKDIR="/sik`pwd`"
-SIKDIR="./sik"
-SIKFILE="${SIKDIR}/$1-`date +%Y%m%d-%R`"
-mkdir -p  $SIKDIR
-cp $1 $SIKFILE 
-echo "$1 nach: $SIKFILE"
-echo "Kontrolle:";cd $SIKDIR;ls -la
+jksik.bash
