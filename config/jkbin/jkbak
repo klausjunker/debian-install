@@ -1,7 +1,1 @@
-#/bin/bash
-BAKDIR="/tmp/backup/`date +%Y%m%d`"
-BAKFILE="${BAKDIR}/$1-`date +%Y%m%d-%H%M%S`"
-mkdir -p  $BAKDIR
-cp $1 $BAKFILE 
-echo "$1 nach: $BAKFILE"
-#echo "Kontrolle:";cd $BAKDIR;ls -la
+/usr/local/bin/jkbak.bash
