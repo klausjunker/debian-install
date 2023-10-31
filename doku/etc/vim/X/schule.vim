@@ -3,7 +3,7 @@
 " Datei-Linux:		~/.config/schule.vim
 " Reload					:so ~/.vimrc
 "------------------------------------------------------------------------
-"echo "schule 2023-2024 30.10.2023"
+"echo "schule2"
 :set noerrorbells
 :set vb t_vb=
 :set spelllang=de_de,en
@@ -17,8 +17,12 @@
 :set noswapfile			" kein swap-file
 :set foldmethod=marker  " default {{{ }}}
 "---------------------------------------------------------------
+
 autocmd FileType python source /etc/vim/python.vim
-autocmd FileType sql source /etc/vim/sql.vim
+augroup sql
+	autocmd!
+	autocmd BufNew,BufEnter /tmp/sql* setlocal filetype=sql
+augroup END
 "---------------------------------------------------------------
 " Mapping
 "---------------------------------------------------------------

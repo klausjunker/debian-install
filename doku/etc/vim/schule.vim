@@ -17,6 +17,7 @@
 :set noswapfile			" kein swap-file
 :set foldmethod=marker  " default {{{ }}}
 "---------------------------------------------------------------
+
 autocmd FileType python source /etc/vim/python.vim
 autocmd FileType sql source /etc/vim/sql.vim
 "---------------------------------------------------------------
