@@ -8,7 +8,7 @@ jkecho "install aptitude"
 #jkecho "aptitude update: main contrib non-free"
 #		sed -i 's/main[ \t]*$/main contrib non-free/g' /etc/apt/sources.list
     jksik /etc/apt/sources.list
-    cp 
+    cp ../config/apt/sources.list 
 		aptitude update
 #-----------------------------------------------------------------------------
 jklog debianinstall "ende:  $0 --- "
