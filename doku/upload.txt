@@ -3,4 +3,16 @@ git commit
 
 ssh -T git@github.com
 
+kontrolle ob ssh eingestellt:
 
+git remote -v 
+
+https -> kein ssh
+
+
+umstellen:
+
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+git remote set-url origin git@github.com:klausjunker/debian-install.git
+
+git push
