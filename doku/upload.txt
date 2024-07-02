@@ -1,4 +1,6 @@
 git add .
 git commit
-git pull
+
+ssh -T git@github.com
+
 
