@@ -1,0 +1,288 @@
+#!/bin/bash
+JKVERSION="0.7  vom 17.8.2024"
+#----------------------------------------------------------------------
+JKHOST="/etc/junker/jkhost.conf"
+jk_configfile="/etc/junker/jkadduser.conf"
+jk_spalte=$(( $(tput cols) - 5 ))
+#----------------------------------------------------------------------
+function jk_adduser_main() {
+  jk_showversion
+  jk_showinfo
+      #jk_debugparameter $@
+  jk_init  # configfile laden
+      jk_debuginit
+  jk_adduser $@                 # user / pw  / vorname / nachname
+  jk_addsambauser $@            # user / pw  
+  jk_addmysqlconfig $@          # user / pw  
+}
+#----------------------------------------------------------------------
+function jk_sicher() {
+    echo -n "     $@     "
+    local rot="\e[1;31m";gruen="\e[1;32m";normal="\e[m"
+    local jk_sure
+    read -p "[y/N]: " jk_sure 
+    case "$jk_sure" in 
+      [yY])	
+            echo -e "${gruen}ja ${normal} --> weiter...";;
+      *)		
+            echo -e "${rot}dann halt nicht!${normal}-> Abbruch"
+            exit 1;; # Error = 1 
+    esac 
+}
+#----------------------------------------------------------------------
+function jk_addsambauser() {
+  echo "jk_addsambauser startet: $@"
+  local jk_user=$1
+  local jk_pw=$2
+  jk_testuserexist $1 $2 # Abbruch if not exist
+  echo "       --- Samba-User $jk_file aktualiseren ..."
+  echo -e "$jk_pw\n$jk_pw" | smbpasswd -a $jk_user > /dev/null
+  return 0
+}
+#----------------------------------------------------------------------
+function jk_adduser () {  
+  echo "jk_adduser startet: $@"
+  local jk_user=$1
+  local jk_pw=$2
+  local jk_vorname=$3
+  local jk_nachname=$4
+  local jk_pwcrypt="geheim"
+  local jk_homedir
+  if [ -n "$jk_schuljahr" ]; then
+    jk_homebase=$jk_homebase/$jk_schuljahr
+  fi
+  if [ -n "$jk_klasse" ]; then
+    jk_homebase=$jk_homebase/$jk_klasse
+  fi
+  if [ -n "$jk_user" ]; then
+    jk_homedir=$jk_homebase/$jk_user
+  else 
+    echo "       --- JKError: kein User -> Abbruch"
+    exit 331
+  fi
+  if [ -n "$jk_pw" ]; then
+    #jk_pwcrypt=`perl -e "print crypt($jk_pw,'aa');"` FALSCH warum?
+    jk_pwcrypt=$(perl -e "print crypt('$jk_pw','saltaa');")
+  else
+    echo "       --- JKError kein pw -> Abbruch"
+    exit 332
+  fi
+  if [ -z "$jk_pwcrypt" ]; then
+    echo "       --- JKError kein pwcrypt -> Abbruch"
+    exit 333
+  fi
+  if [ -z "$jk_vorname" ]; then
+    echo "      --- JKwarning kein Vorname"
+  fi
+  if [ -z "$jk_nachname" ]; then
+    echo "      --- JKwarning kein Nachname"
+  fi
+  #  ------------------ testen variablen ok?
+  echo "      --- debug: homedir: $jk_homedir"
+  echo "                 vorname: $jk_vorname nachname: $jk_nachname"
+  #jk_sicher "ok?"
+  #read -p "press Enter" jk_none
+  #  ------------------ make directory: homebase  -----
+  if [ ! -d "$jk_homebase" ]; then
+    mkdir -p "$jk_homebase"
+  fi
+  #  ------------------ testen directory: homebase  existiert ? -----
+  if [ ! -d "$jk_homebase" ]; then
+    echo "  --- JKError: Das Verzeichnis existiert nicht. -> Abbruch"
+    exit
+  fi
+  #  ------------------ testen group existiert? -----
+  if ! getent group "$jk_klasse" > /dev/null 2>&1; then
+    echo "      --- Gruppe $jk_klasse wird angelegt ..."
+    groupadd $jk_klasse
+  else 
+    echo -n "      --- Gruppe: $jk_klasse existert schon!"
+    echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+  fi
+  #  ------------------ testen user existiert? -----
+  if id "$jk_user" &>/dev/null; then
+    echo "      --- debug: Der Benutzer $jk_user existiert schon."
+    read -p "ok -> press Enter  falsch -> strg+C" jk_none
+  else  
+    echo "      --- Der Benutzer $jk_user wird angelegt..."
+    read -p "ok -> press Enter  falsch -> strg+C" jk_none
+    # Achtung nach \ kein Leerzeichen !!
+    adduser --home $jk_homedir \
+      --ingroup $jk_klasse \
+      --comment "$jk_schuljahr,$jk_klasse,$jk_vorname,$jk_nachname" \
+      --disabled-password  $jk_user 
+    if [ $? -eq 0 ]; then
+        echo "      --- Benutzer $jk_user wurde erfolgreich angelegt"
+        echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+    else
+        echo "Befehl fehlgeschlagen."
+        exit 1
+    fi
+  fi
+  usermod --password $jk_pwcrypt $jk_user > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+        echo -n "      --- Das Passwort wurde erfolgreich aktualisiert"
+        echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+  else
+        echo -n "  usermod fehlgeschlagen. -> Abbruch"
+        echo -e "\e[${jk_spalte}G(\e[1;31mErr\e[m)"
+        exit 1
+  fi
+  usermod -c "$jk_schuljahr,$jk_klasse,$jk_vorname,$jk_nachname"\
+        $jk_user \
+        > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+        echo -n "      --- Kommentare erfolgreich aktualisiert"
+        echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+  else
+        echo -n "  usermod --comment fehlgeschlagen. -> Abbruch"
+        echo -e "\e[${jk_spalte}G(\e[1;31mErr\e[m)"
+        exit 1
+  fi
+}
+#----------------------------------------------------------------------
+function jk_testuserexist() {
+  local jk_user=$1
+  local jk_pw=$2
+  echo "       --- debug: jk_testuserexist startet: $@"
+  echo -n "  Der Linux-Benutzer $jk_user "
+  if id "$jk_user" &>/dev/null; then
+    echo -n "existiert schon."
+    echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+  else
+    echo -n "existiert nicht. -> Abbruch"
+    echo -e "\e[${jk_spalte}G(\e[1;31mErr\e[m)"
+    exit 1
+  fi
+  if [ -z "$jk_pw" ]; then
+    echo "Kein Passwort -> Abbruch"
+    echo -e "\e[${jk_spalte}G(\e[1;31mErr\e[m)"
+    exit 1
+fi
+  return 0 # ok: user exist
+}
+#----------------------------------------------------------------------
+function jk_addmysqlconfig() {
+  echo "jk_addmysqlconfig startet: $@"
+  local jk_user=$1
+  local jk_pw=$2
+  #  ------------------ testen, ob  user existiert? -----
+  jk_testuserexist $1 $2 # Abbruch if not exist
+  #  ------------------  .my.cfg aktualisieren -----
+  local jk_homedir=$(getent passwd "$jk_user" | cut -d: -f6)
+  #echo "       --- debug: user: $1 - pw: $2 - dir: $jk_homedir"
+  local jk_file=$jk_homedir/.my.cnf
+  local jk_zeile=$(grep -n -m 1 "database" "$jk_file" | cut -d: -f1)
+  # Wenn das Wort gefunden wurde, löschen Sie alle Zeilen ab dieser Zeile
+  echo "       --- $jk_file aktualiseren"
+  if [ ! -z "$jk_zeile" ]; then
+    sed -i "/database/,\$d" "$jk_file"
+  else
+    echo "  debug: Wort 'database' nicht gefunden. (ok)"
+  fi
+  echo "database=$jk_user"  >> $jk_file
+  echo "[client]"           >> $jk_file
+  echo "user=$jk_user"      >> $jk_file
+  echo "password=$jk_pw"    >> $jk_file
+  #  ------------------  mysql-user pw aktualisieren -----
+  echo "       --- mysql-user: $jk_user anlegen bzw. pw aktualiseren"
+  mysql -e "create user if not exists $jk_user identified by '$jk_pw';"
+  mysql -e "ALTER USER '$jk_user'@'%' IDENTIFIED BY '$jk_pw';"
+  mysql -e "grant all on $jk_user.* to $jk_user;"
+  mysql -e "create database if not exists $jk_user;"
+  mysql -e "show grants for $jk_user;"| sed 's/^/  /'
+  return 0
+}
+#----------------------------------------------------------------------
+function jk_showversion() {
+    echo "$0 --- Version: $JKVERSION";
+}
+#----------------------------------------------------------------------
+function jk_showinfo() {
+    echo "------------------------------------------------"
+    echo -e "|\e[1;32m neu 0.7: \e[m"
+    echo "| useradd  optional: mit mysqluser / sambauser ";
+    echo "------------------------------------------------"
+    #rot="\e[1;31m";gruen="\e[1;32m";normal="\e[m"
+}
+#----------------------------------------------------------------------
+function jk_init() {
+    # Konfigurationsdatei einlesen
+    #local jk_spalte=$(( $(tput cols) - 5 ))
+    if [ -f $JKHOST ]; then
+        echo -n "Datei \"$JKHOST\"  geladen!"
+        echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+        source    $JKHOST 
+    else
+        echo -n "Datei \"$JKHOST\"  nicht gefunden!"
+        echo -e "\e[${jk_spalte}G(\e[1;31mErr\e[m)"
+        exit 1
+    fi
+    if [ -f $jk_configfile ]; then
+        echo -n "Datei \"$jk_configfile\"  geladen!"
+        echo -e "\e[${jk_spalte}G(\e[1;32mok\e[m)"
+        source    $jk_configfile 
+    else
+        echo -n "Datei \"$jk_configfile\"  nicht gefunden!"
+        echo -e "\e[${jk_spalte}G(\e[1;31mErr\e[m)"
+        exit 1
+    fi
+}
+#----------------------------------------------------------------------
+function jk_debug() {
+    echo "debug: $@";
+}
+#----------------------------------------------------------------------
+function jk_debuginit(){
+    # /ex/config/junker/jkadduser.conf 
+    echo "     Schuljahr: $jk_schuljahr";
+    echo "     Klasse   : $jk_klasse";
+    # /etc/junker/jkhost.conf 
+    echo "     Homebase : $jk_homebase"; 
+    echo "------------------------------------------------"
+}
+#----------------------------------------------------------------------
+function jk_showhelp() {
+    echo "Verwendung: $0 [-h] [-f <dateiname>] [-n <zahl>] [-v]"
+    echo ""
+    echo "Optionen:"
+    echo "  -h                Zeige diese Hilfe an"
+    echo "  -s <schuljahr>    Gib einen Dateinamen an"
+    echo "  -n <zahl>         Gib eine Zahl an"
+    echo "  -v                Aktiviert den Verbatim-Modus"
+    echo ""
+}
+#-------------------------------------------------------
+function jk1test_optionen() {
+    while getopts "hf:n:v" opt; do
+        case ${opt} in
+            h )
+                show_help
+                exit 0
+                ;;
+            f )
+                filename=$OPTARG
+                ;;
+            n )
+                number=$OPTARG
+                ;;
+            v )
+                verbose=true
+                ;;
+            \? )
+                echo "Ungültige Option: -$OPTARG" >&2
+                show_help
+                exit 1
+                ;;
+            : )
+                echo "Option -$OPTARG erfordert ein Argument." >&2
+                show_help
+                exit 1
+                ;;
+        esac
+    done
+}
+#-------------------------------------------------------
+jk_adduser_main $@ # START
+exit # ENDE
+#-------------------------------------------------------

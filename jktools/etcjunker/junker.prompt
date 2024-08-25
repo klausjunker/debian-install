@@ -1,0 +1,11 @@
+#   junker,prompt Version 19.8.2024
+PS1='${debian_chroot:+($debian_chroot)}'
+PS1=$PS1'\[\e[1;32m\]\u'
+PS1=$PS1'\[\e[1;34m\]@\h:'
+PS1=$PS1'\[\e[1;33m\]\w'
+PS1=$PS1'\[\e[1;31m\]\$ '
+PS1=$PS1'\[\e[s\]'
+#PS1=$PS1'\[\e[1;$((${COLUMNS}-9))H\e[1;33m\A Uhr\]'
+#PS1=$PS1'\[\e[2;$((${COLUMNS}-4))H\e[1;33m\l\]'
+PS1=$PS1'\[\e[u\e[m\]'
+setterm blength 0

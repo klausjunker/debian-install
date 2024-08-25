@@ -1,0 +1,43 @@
+alias jktestalias="echo 'test alias' "
+alias jka="jkalias "
+alias jkalias="vim /etc/junker/junker.alias && source /etc/junker/junker.alias "
+#----------------------------------------------------------
+alias jkbak="/usr/local/bin/versionen/jkbak1.0.3.bash $@"
+alias jksik="/usr/local/bin/versionen/jksik-0.5.8.bash $@"
+#----------------------------------------------------------
+alias jkkatago="/ex/opt/KataGo/cpp/katago gtp"
+alias jklizzie="cd /ex/opt/jklizzie && java -jar lizzie.jar -config config-katago.txt"
+alias jksabaki="/ex/opt/jksabaki"
+#----------------------------------------------------------
+alias s="sage "
+alias p="python3.12 "
+#----------------------------------------------------------
+alias jkftp="ftp klausjunker.bplaced.net"
+#----------------------------------------------------------
+alias cdhelp="cd /home/hilfe"
+#----------------------------------------------------------
+alias cda="cd /ex/temp/tauschnfs/1sbin "
+alias cdb="cd /ex/2324medion/2bplaced/ "
+alias cdc="cd /ex/ebook/3cgt/ "
+alias cdd="cd /ex/downloads/ "
+alias cde="cd /ex/ "
+alias cdf="cd /ex/find/ "
+alias cdh="cdhelp "
+alias cdi="cd /ex/informatik"
+alias cdk="cd /ex/2324medion/ka2324 "
+alias cdl="cd /ex/linux/ "
+alias cdn="cd /ex/2324medion/1noten2324 "
+alias cdo="cd /ex/2425/0org2425 "
+alias cdp="cd /ex/hilfe/privat "
+alias cdm="cd /ex/mathe/ "
+alias cdmp="cd /ex/mp/ "
+alias cds="cd /ex/steuer/ "
+alias cdt="cd /ex/temp/ "
+alias cdtausch="cd /ex/temp/tausch "
+alias cdv="cd /ex/videos"
+alias cdw="cd /ex/work"
+alias cdx="cd /ex/mathe/vektoren/bpe16"
+alias cdweiqi="cd /ex/weiqi"
+#----------------------------------------------------------
+alias mkcd='function create_and_cd() { mkdir "$1" && cd "$1"; }; create_and_cd'
+
