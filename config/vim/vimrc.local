@@ -1,13 +1,14 @@
-"klaus junker added 18.11.2022
-"set runtimepath=~/.config/vim,~/.config/vim/after,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after
-set runtimepath=~/.config/vim,~/.config/vim/after,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after
-"source ~/.config/vim/vimrc	
-source /etc/vim/minimal.vim	
-source /etc/vim/schule.vim	
-source /etc/vim/junker.vim	
-"source /etc/vim/testpy.vim	
-source /etc/vim/python.vim
-source /etc/vim/sql.vim	
-source /etc/vim/latex.vim	
-"source /etc/vim/experiment.vim	
-"source ~/meineconfig/apfel.vim	
+"set runtimepath=/usr/share/vim/vim82,~/.vim
+"set runtimepath=/usr/share/vim/vim82
+"		~/.vim
+" 		/usr/share/vim/vim82
+" 		/usr/share/vim/vim82/debian.vim
+"		
+"-------------------------------------------------------
+"echon "\r"
+source /etc/vim/jk/jkgrund.vim	
+source /etc/vim/jk/jkmappingall.vim	
+source /etc/vim/jk/jkfiletype.vim	
+source /etc/vim/jk/jkext.vim	
+source /etc/vim/jk/jkfunktionen.vim	
+
