@@ -1,0 +1,5 @@
+
+  # jk_debugparameter A $@
+  # jk_debugparameter B: peter otto hans 
+  # jk_copy .default/console-setup a # debug
+  # jk_copy .default/sources.list  b # debug 

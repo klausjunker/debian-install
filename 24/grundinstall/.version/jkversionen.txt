@@ -1,0 +1,7 @@
+0.1   - 2.9.2024 
+        console-setup
+        aptitude update / upgrade
+0.1.1  - 2.9.2024
+        main nur mit Funkstionsaufrufen   
+        grundinstall - jkaptitude apt.grund.txt
+    

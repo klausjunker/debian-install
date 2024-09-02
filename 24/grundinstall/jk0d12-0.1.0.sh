@@ -1,23 +1,18 @@
 #!/bin/bash
-JKVERSION="0.1  vom 1.9.2024"
-JKMESSAGE="erstellt Grundinstallation für Debian 12"
 #----------------------------------------------------------------------
-JKHOST="/etc/junker/jkhost.conf"
-jk_configfile="/etc/junker/jkadduser.conf"
-jk_spalte=$(( $(tput cols) - 5 ))
+JKVERSION="0.1.1  vom 2.9.2024"
+JKMESSAGE="erstellt Grundinstallation für Debian 12"
+# Dokumentation:                            ./.version/jkversionen.txt 
 #----------------------------------------------------------------------
 function jk_debian12_main() {
   jk_showversion
-  # jk_debugparameter A $@
-  # jk_debugparameter B: peter otto hans 
-  # jk_copy .default/console-setup a # debug
-  # jk_copy .default/sources.list  b # debug 
+  # ./.debug/jkhilfe.txt 
+
   #jk_copy .default/console-setup /etc/default/ 
   #jk_copy .default/sources.list  /etc/apt/ 
   #aptitude update
   #aptitude upgrade
   #/etc/init.d/console-setup.sh restart
-
 }
 #----------------------------------------------------------------------
 function jk_debugparameter() {

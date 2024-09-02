@@ -1,0 +1,7 @@
+firmware-b43-installer
+b43-fwcutter
+net-tools
+rfkill
+wireless-tools
+wpasupplicant 
+lshw
