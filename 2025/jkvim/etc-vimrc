@@ -1,0 +1,60 @@
+" -------------------------------------------------------
+" /etc/vim/vimrc - Globale Vim-Konfiguration
+" -------------------------------------------------------
+
+" 1. Vi-Kompatibilitätsmodus ausschalten (moderne Vim-Features aktivieren)
+set nocompatible
+
+" 2. Datei-Typen erkennen und Plugins + automatische Einrückung aktivieren
+filetype plugin indent on
+
+" 3. Syntax-Highlighting aktivieren
+syntax on
+
+" 4. Standard-Encoding auf UTF-8 setzen
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+
+" 5. Backup- und Swap-Dateien konfigurieren
+" Backup- und Swap-Dateien im Home-Verzeichnis des Users speichern
+"if has("unix")
+"  if !isdirectory(expand("~/.vim/backup"))
+"    call mkdir(expand("~/.vim/backup"), "p", 0700)
+"  endif
+"  if !isdirectory(expand("~/.vim/swap"))
+"    call mkdir(expand("~/.vim/swap"), "p", 0700)
+"  endif
+"  set backupdir=~/.vim/backup//
+"  set directory=~/.vim/swap//
+"endif
+set nobackup
+set noswapfile
+
+" 6. Usability-Verbesserungen
+set number                  " Zeilennummern anzeigen
+set mouse=a                 " Maus in allen Modi aktivieren
+set cursorline              " Hervorhebung der aktuellen Zeile
+highlight CursorLine cterm=NONE ctermbg=darkgray
+set autoindent              " Automatisches Einrücken
+set smartindent             " Intelligentes Einrücken
+
+" 7. Performance und Komfort
+set timeout                " Timeout für Tastenfolgen aktivieren
+set timeoutlen=500         " Timeout in Millisekunden
+
+" 8. Keine akustischen Fehlermeldungen
+set noerrorbells
+set visualbell
+set t_vb=
+
+"9. klaus Junker
+"
+set clipboard=unnamedplus
+set backspace=indent,eol,start
+if filereadable("/etc/vim/vimrc.local")
+    source /etc/vim/vimrc.local
+endif
+" -------------------------------------------------------
+" EOF
+" -------------------------------------------------------

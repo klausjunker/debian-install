@@ -1,0 +1,27 @@
+Student -> bk11.k1.csv:
+  :%!csvtool head 1 -
+  :%!csvtool -t TAB col 2,3,6 -
+  Filtern longName, foreName klasse,name -> Nachname Vorname, Klasse 
+  mapping: shift F6
+Sid hinzufügen:
+  mapping: shift F4
+Würfeln:  
+  mapping F4
+
+
+
+sortieren
+:2,$sort
+
+
+Filtern spaltenweise:
+
+
+:%s/^[^,]*,[^,]*,\([^,]*\).*/\1/
+
+
+:g/^\([^,]*,\)\{2\}Wert3/d
+
+
+
+

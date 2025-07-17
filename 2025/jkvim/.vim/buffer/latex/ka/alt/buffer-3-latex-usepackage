@@ -1,0 +1,11 @@
+aktualisieren mit: mktexlsr oder texhash alias -> mktexlsr 
+%
+\usepackage[height=24cm,width=18cm, top=2cm ,left=20mm]{geometry}
+\usepackage{jklisting}
+\usepackage{jkdok}[2024/08/25] 
+\usepackage{jkmathe}[2024/12/21] 
+\usepackage{jkka}[2024/12/21] 
+%\usepackage{jkexperiment}
+%\usepackage{jkunicode}
+%\usepackage{jkmathe0.1} 
+%\usepackage{jkunicode} 

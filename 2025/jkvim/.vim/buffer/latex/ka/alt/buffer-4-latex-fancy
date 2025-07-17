@@ -1,0 +1,7 @@
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Informatik}
+\fancyhead[R]{\today}
+\fancyfoot[C]{\thepage}
+

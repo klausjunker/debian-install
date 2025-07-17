@@ -1,0 +1,72 @@
+
+\documentclass[12pt,pdftex]{article}
+\usepackage{jkka}[2022/11/01] 
+\usepackage{jklisting}
+\usepackage{jkexperiment}
+\usepackage{jklistingstyle}
+\setcounter{jkdebuglevel}{0}
+\setcounter{jkci}{0}
+\lfoot{Junker} 	
+%------------------------------------------------------------------
+\lhead{KA 3} 
+\rhead{4.3.2024}
+\rfoot{JS1-M1}
+\DTLloaddb{liste}{../m5.k3.csv}
+\cfoot{}
+%------------------------------------------------------------------
+\begin{document}
+\input{a/b.tex}
+\DTLforeach{liste}{\sKlasse=Klasse,\sVN=Vorname,\sNN=Nachname,\sSID=Sid}
+{
+	\addtocounter{jkci}{1}  % laufende Schülernummer !!!
+	\chead{\thejkci\,(\sSID) - \sVN \,  \sNN \, - \sKlasse}
+	\setcounter{jkaufgabe}{0}
+Hinweis: Die Aufgaben können zufällig, also nicht nach Schwierigkeitsgrad sortiert, sein!
+
+
+Der Rechenweg muss erkennbar sein! 
+
+\par\bigskip
+%	\input{a/a1.tex}
+	\input{a/a1-integrale.tex}
+\par\bigskip
+	\input{a/a2-integrale.tex}
+\par\bigskip
+	\input{a/a3-integrale.tex}
+\par\bigskip
+	\input{a/a4-integrale.tex}
+\par\bigskip
+\newpage
+	\input{a/a5-integrale.tex}
+\par\bigskip
+	\input{a/a6-integrale.tex}
+\par\bigskip
+	\input{a/a7-integrale.tex}
+\par\bigskip
+	\input{a/a8-integrale.tex}
+\par\bigskip
+	\input{a/a9-integrale.tex}
+\newpage
+	\input{a/a10-integrale.tex}
+\par\bigskip
+	\input{a/a11-optimierung.tex}
+
+\newpage
+{\Huge Wahlaufgaben: }\par
+Wählen Sie eine der beiden folgenden Aufgaben!
+\par\bigskip
+	\input{a/a12-optimierung.tex}
+\par\bigskip
+	\input{a/a13-rotationsvolumen.tex}
+
+\newpage
+%	\vspace{6cm}
+%\par\bigskip\hrule\bigskip
+%	\input{a/a3.tex}
+%	\vspace{6cm}
+%\par\bigskip\hrule\bigskip
+%    \input{b/a-funktionen001.tex}
+%\newpage
+\newpage
+}	
+\end{document}	

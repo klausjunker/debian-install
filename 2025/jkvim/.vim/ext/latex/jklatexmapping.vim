@@ -1,0 +1,2 @@
+" Latex 
+inoremap ,,<Space>   {,}

@@ -1,0 +1,12 @@
+
+\newcommand{\checkcalc}{%
+    \@ifpackageloaded{calc}{%
+        % Wenn 'calc' geladen ist
+        \PackageWarning{myPackage}{Das Paket 'calc' ist geladen.}%
+         \textbf{Hinweis: Das Paket 'calc' ist geladen.}\\%
+    }{%
+        % Wenn 'calc' nicht geladen ist
+        \PackageWarning{myPackage}{Das Paket 'calc' ist nicht geladen.}%
+    }%
+}
+\makeatother

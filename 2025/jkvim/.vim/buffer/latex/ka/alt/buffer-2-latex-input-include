@@ -1,0 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[width=0.99\textwidth]{img/a}
+\includegraphics[width=0.99\textwidth]{img/bpe13-integrale-klett-5}
+\par Hinweis: 
+Achten Sie auf eine sorgfältige Darstellung. Der Rechenweg muss klar
+erkennbar sein!
+    \input{a/a1-poly-schnittpunkte001.sage}
+
+\lstinputlisting[language=Python]{code.py}
+

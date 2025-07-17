@@ -1,0 +1,5 @@
+Leerzeilen löschen
+                                  :g/^$/d
+Zeilen mit # am Anfang löschen:
+                                  :g/^#/d
+

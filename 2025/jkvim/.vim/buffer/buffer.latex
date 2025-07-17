@@ -1,0 +1,13 @@
+\newcounter{jkaufgabe}\setcounter{jkaufgabe}{0}
+~/.vim/buffer/latex/ka/
+\includegraphics[width=0.99\textwidth]{img/a}
+
+\lstinputlisting[{caption=person4constraint.sql,frame=tblr,breaklines=true}]{./src/person/person4constraint.sql}
+%\begin{center}
+%    {\LARGE\textbf{Informatik-Arbeitsblatt}} \\
+%    \vspace{0.5em}
+%    \textit{Thema: Beziehungen} \\
+%    \vspace{1em}
+%    Datum: \today
+%\end{center}
+\par\vspace{1cm}\par Anhang: \input{president.tex}

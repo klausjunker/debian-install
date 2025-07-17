@@ -1,0 +1,7 @@
+:set runtimepath?
+  runtimepath=~/.vim,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim9
+0,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/after
+
+
+bash: echo $VIMRUNTIME
+

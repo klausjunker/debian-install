@@ -1,0 +1,17 @@
+text-Dateien
+:set filetype? -> text (txt)
+~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml. 
+
+
+
+
+1.
+moodle-user in mysql anlegen
+  user: madmin
+  start mysql
+CREATE DATABASE moodle DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'dein_passwort';
+GRANT ALL PRIVILEGES ON moodle.* TO 'moodleuser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+

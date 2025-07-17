@@ -1,0 +1,10 @@
+\usepackage{fontspec}                        % Schriftarten (LuaLaTeX)
+
+
+
+% --- Schriftarten (optional, modernes Design) ---
+\setmainfont{TeX Gyre Pagella}              % Serifenhauptschrift
+\setmathfont{TeX Gyre Pagella Math}         % Passende Matheschrift
+% --- Titelgestaltung ---
+\titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}

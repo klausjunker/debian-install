@@ -1,0 +1,10 @@
+/ex/temp/buffer/python/a.py
+
+/ex/hilfe/thonny/konsole.txt
+/ex/hilfe/python/docstring.txt
+/ex/hilfe/python/kopf.txt
+
+if __name__ == "__main__":
+    jkmain_demo_verkettete_liste()
+
+

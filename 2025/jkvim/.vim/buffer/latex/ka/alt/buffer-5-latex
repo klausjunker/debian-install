@@ -1,0 +1,11 @@
+tabelle
+
+\begin{tabular}{lcr}
+\toprule
+Name & Alter & Stadt \\
+\midrule
+Anna & 28 & Berlin \\
+Ben & 34 & München \\
+Clara & 22 & Hamburg \\
+\bottomrule
+\end{tabular}

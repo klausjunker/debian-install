@@ -1,0 +1,5 @@
+\noindent\par\stepcounter{jkaufgabe}{\bf\Large Aufgabe\thejkaufgabe:}\par
+
+\ifodd\value{jkci} \else \fi
+\includegraphics[width=0.99\textwidth]{img/a}
+

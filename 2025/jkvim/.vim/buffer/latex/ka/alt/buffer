@@ -1,0 +1,59 @@
+find  /ex/ -type f -name '*.tex' -mtime -45  1>find.tex.txt  2> error.log -print 
+//http://myadmin.klausjunker.bplaced.net/index.php?route=/database/operations&db=klausjunker
+$username = "josefinedel_db";
+$password = "kNmn38343!!";
+$dbname = "josefinedel_db";
+$dbUsername = "klausjunker"; // Benutzername für die Datenbankverbindung
+$password = "mysqlpw4junker";
+$dbname = "klausjunker";
+$dbUsername = "klausjunker"; // Benutzername für die Datenbankverbindung
+$password = "mysqlpw4junker";
+$dbname = "klausjunker";
+P
+/ex/temp/tausch
+/etc/profile.d/junker.alias.sh
+
+.netrc
+# Hilfe:
+# ! return to shell
+# $ execute a macro
+# lcd / pwd 	print local/extern directory
+# lcd / cd	change directory
+#Ausfürhren mit $jkuphtml !
+
+
+
+<p>Drücke <kbd>Ctrl</kbd> + <kbd>U</kbd>, um den Quelltext der Seite in den meisten Browsern anzuzeigen.</p>
+
+	( std::vector<std::vector<std::pair<int, std::string>>> listOfLists
+    int diffX = std::abs(coords1.first - coords2.first);
+
+    f.write(r"\begin{tasks}(3)")
+      f.write(r"\task " + mischliste[i] +"\n\n")
+    f.write(r"\end{tasks}")
+integral_latex = r"\int_0^3 (" + latex(f) + r") \, dx = " + latex(integral_f)
+&emsp;
+syn region  pythonString matchgroup=pythonTripleQuotes
+      \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend
+      \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
+
+
+
+
+\usepackage{/etc/junker/tex/sty/jkka}[2022/11/01] 
+\usepackage{/etc/junker/tex/sty/jklisting}
+\usepackage{/etc/junker/tex/sty/jkexperiment}
+\usepackage{/etc/junker/tex/sty/jklistingstyle}
+
+\input{b/a-funktionen001.tex}
+sagetex:
+cd $(TempDir) && sage $(Name).sagetex.sage 
+py:
+if __name__ == "__main__":
+
+
+
+\usepackage{/etc/junker/tex/sty/jkka}[2022/11/01] 
+\usepackage{/etc/junker/tex/sty/jklistingstyle}
+
+za=datetime.datetime.strptime(a,"%H:%M:%S")

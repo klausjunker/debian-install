@@ -1,0 +1,7 @@
+aptitude: ftp !!!!
+
+set spelllang=de -> automatischer download!
+
+zg -> automatisch in spellfile gespeichert!
+
+

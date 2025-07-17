@@ -1,0 +1,66 @@
+\begin{align*}
+a \circ a' & = e \circ ( a \circ a' ),  && linksneutral\\
+\end{align*}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+
+% Definition of new theorem styles
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example}
+
+\title{Einführung in Gruppentheorie}
+\author{Ihr Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Einführung}
+In der Algebra ist eine \emph{Gruppe} eine der grundlegendsten Strukturen. Sie wird verwendet, um die symmetrische Natur von mathematischen und physikalischen Systemen zu untersuchen.
+
+\section{Grundlegende Definitionen}
+
+\begin{definition}[Gruppe]
+Eine \textbf{Gruppe} $(G, \ast)$ ist ein Set $G$ zusammen mit einer binären Operation $\ast: G \times G \to G$, die die folgenden vier Bedingungen erfüllt:
+\begin{enumerate}
+    \item \textbf{Abgeschlossenheit:} Für alle $a, b \in G$, ist $a \ast b \in G$.
+    \item \textbf{Assoziativität:} Für alle $a, b, c \in G$, gilt $(a \ast b) \ast c = a \ast (b \ast c)$.
+    \item \textbf{Neutrales Element:} Es existiert ein Element $e \in G$, so dass für jedes Element $a \in G$ gilt $e \ast a = a \ast e = a$.
+    \item \textbf{Inverse Elemente:} Zu jedem Element $a \in G$ existiert ein Element $b \in G$ (oft als $a^{-1}$ bezeichnet), so dass $a \ast b = b \ast a = e$.
+\end{enumerate}
+\end{definition}
+
+\section{Wichtige Theoreme}
+
+\begin{theorem}
+In jeder Gruppe $G$, ist das neutrale Element $e$ eindeutig.
+\end{theorem}
+\begin{proof}
+Angenommen, $e$ und $e'$ sind neutrale Elemente von $G$. Dann gilt:
+\[
+e = e \ast e' = e',
+\]
+weil $e'$ neutral ist und $e$ mit jedem Element, insbesondere $e'$, kommutiert.
+\end{proof}
+
+\begin{theorem}
+Für jedes Element $a$ in einer Gruppe $G$, ist das inverse Element $a^{-1}$ eindeutig.
+\end{theorem}
+\begin{proof}
+Angenommen, $b$ und $c$ sind Inverse zu $a$. Dann gilt:
+\[
+b = b \ast e = b \ast (a \ast c) = (b \ast a) \ast c = e \ast c = c,
+\]
+wobei $b \ast a = e$ und $a \ast c = e$.
+\end{proof}
+
+\section{Beispiele}
+
+\begin{example}
+Die Menge $\
+
