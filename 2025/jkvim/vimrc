@@ -1,5 +1,5 @@
 " -------------------------------------------------------
-" ~/vimrc - user Vim-Konfiguration
+" /etc/vim/vimrc - Globale Vim-Konfiguration
 " -------------------------------------------------------
 
 " 1. Vi-Kompatibilitätsmodus ausschalten (moderne Vim-Features aktivieren)
@@ -35,6 +35,7 @@ set noswapfile
 set number                  " Zeilennummern anzeigen
 set mouse=a                 " Maus in allen Modi aktivieren
 set cursorline              " Hervorhebung der aktuellen Zeile
+highlight CursorLine cterm=NONE ctermbg=darkgray
 set autoindent              " Automatisches Einrücken
 set smartindent             " Intelligentes Einrücken
 
@@ -51,6 +52,9 @@ set t_vb=
 "
 set clipboard=unnamedplus
 set backspace=indent,eol,start
+if filereadable("/etc/vim/vimrc.local")
+    source /etc/vim/vimrc.local
+endif
 " -------------------------------------------------------
 " EOF
 " -------------------------------------------------------

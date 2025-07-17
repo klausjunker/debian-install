@@ -1,3 +1,7 @@
+~/.vimrc: jkbackup jkmapping jkfiletyes
+
+
+/etc/vimrc
 Ja, deine vimrc-Konfiguration sieht sehr gut strukturiert, durchdacht und sauber aus!
 Sie deckt alle wichtigen Bereiche ab: Kompatibilität, Dateitypen, Encoding, Usability und Performance.
 
