@@ -1,0 +1,3 @@
+# ~/.bashrc
+[ -f "$HOME/.local/jkaliases" ] && . "$HOME/.local/jkaliases"
+
