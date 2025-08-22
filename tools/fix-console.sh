@@ -17,7 +17,7 @@ echo "alt:"
 eval $JKCOMMAND
 echo ">>> Quellen prüfen und fehlende Bereiche ergänzen..."
 sed -i -E "s/^[[:space:]]*FONTFACE=.*/FONTFACE=$JKFONTFACE/" "$JKFILE"
-sed -i -E "s/^[[:space:]]*FONTSIZE=.*/FONTSIZE=$JKFONTFACE/" "$JKFILE"
+sed -i -E "s/^[[:space:]]*FONTSIZE=.*/FONTSIZE=$JKFONTSIZE/" "$JKFILE"
 
 
 

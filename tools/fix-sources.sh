@@ -15,14 +15,17 @@ cp "$JKFILE" "$JKBACKUP"
 
 # non-free-firmware ergänzen, wenn fehlt
 sed -i -E '/^[[:space:]]*deb / {/non-free-firmware/! s/(non-free)(.*)/\1 non-free-firmware\2/}' "$JKFILE"
+sed -i -E '/^[[:space:]]*deb-src / {/non-free-firmware/! s/(non-free)(.*)/\1 non-free-firmware\2/}' "$JKFILE"
 
 
 
 # non-free ergänzen, wenn fehlt
-sed -i -E '/^[[:space:]]*deb(-src)?[[:space:]]/ { /non-free/! s/(main|contrib)/\1 contrib non-free/ }' "$JKFILE"
+sed -i -E '/^[[:space:]]*deb / { /non-free/! s/(main|contrib)/\1 contrib non-free/ }' "$JKFILE"
+sed -i -E '/^[[:space:]]*deb-src / { /non-free/! s/(main|contrib)/\1 contrib non-free/ }' "$JKFILE"
 
 # contrib ergänzen, wenn fehlt
 sed -i -E '/^[[:space:]]*deb / {/contrib/! s/(main)(.*)/\1 contrib\2/}' "$JKFILE"
+sed -i -E '/^[[:space:]]*deb-src / {/contrib/! s/(main)(.*)/\1 contrib\2/}' "$JKFILE"
 
 # -----------------------------------------------------------------------------
 
