@@ -1,1 +1,6 @@
-texlive-lualatex
+texlive-luatex              # starten mit lualatex --version
+texlive-latex-base          # Grundbefehle für LaTeX.
+texlive-latex-recommended   # wichtige Pakete für mathematische Umgebungen etc.
+texlive-latex-extra         # zusätzliche nützliche Pakete.
+texlive-fonts-recommended   # empfohlene Fonts.
+texlive-fonts-extra         

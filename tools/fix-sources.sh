@@ -2,11 +2,11 @@
 # Ergänzt contrib, non-free und non-free-firmware in /etc/apt/sources.list mit Backup
 set -e
 
-#LIST="/etc/apt/sources.list"
 JKFILE="/etc/apt/sources.list"
-JKBACKUP="/etc/apt/sources.list.backup.$(date +%F-%H%M%S)"
+JKBACKUP="$JKFILE.backup.$(date +%F-%H%M%S)"
+JKCOMMAND="cat $JKFILE"
 
-echo ">>> Backup anlegen: $BACKUP"
+echo ">>> Backup anlegen: $JKBACKUP"
 cp "$JKFILE" "$JKBACKUP"
 
 echo ">>> Quellen prüfen und fehlende Bereiche ergänzen..."
@@ -20,4 +20,5 @@ sed -i -E '/^[[:space:]]*deb / {/non-free[^-]/! s/(contrib|main)(.*)/\1 non-free
 sed -i -E '/^[[:space:]]*deb / {/non-free-firmware/! s/(non-free)(.*)/\1 non-free-firmware\2/}' "$JKFILE"
 
 echo ">>> Fertig! Backup liegt unter: $JKBACKUP"
-echo ">>> Jetzt bitte ausführen: sudo apt update"
+eval $JKCOMMAND
+
