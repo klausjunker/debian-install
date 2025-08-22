@@ -1,0 +1,7 @@
+isc-dhcp-client # Befehl:  dhclient wlan0
+translate-shell # Beispiel: trans verbose
+hunspell        # Rechtschreibung
+hunspell-de-de  # Rechtschreibung
+mutt            # E-Mail
+tmux            # moderner als screen
+bat             # batcat

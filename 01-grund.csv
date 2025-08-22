@@ -1,0 +1,6 @@
+git
+aptitude
+vim
+ssh
+mc
+pmount 			# pmount /deb/sd1 usbstick -> /media/usbstick
