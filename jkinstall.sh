@@ -85,7 +85,7 @@ if whiptail --title "jk: Paketgruppen-Auswahl" \
   echo "-----------------------------------------------------------------------"
 
   # Pakete installieren
-  apti-get install -y "${selected_pakete[@]}"
+  apt-get install -y "${selected_pakete[@]}"
 else
   echo "Abgebrochen vom Benutzer."
   rm "$tempfile"
